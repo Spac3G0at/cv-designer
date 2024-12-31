@@ -32,21 +32,37 @@ export const CVProvider = ({ children }) => {
 
   const undo = () => {
     if (stack.length > 1) {
-      console.log("UNDO");
       setFuture([stack[stack.length - 1], ...future]);
       setStack(stack.slice(0, stack.length - 1));
+      localStorage.setItem(
+        "cv",
+        JSON.stringify(stack.slice(0, stack.length - 1))
+      );
     }
   };
 
   const redo = () => {
     if (future.length > 0) {
       setStack([...stack, future[0]]);
+      localStorage.setItem("cv", JSON.stringify(future[0]));
       setFuture(future.slice(1));
     }
   };
 
+  const removeFromMainGroup = (id, groupId) => {
+    const updatedCV = {
+      ...cv,
+      main: cv.main.map((el) =>
+        el.id === groupId
+          ? { ...el, data: el.data.filter((exp) => exp.id !== id) }
+          : el
+      ),
+    };
+    update(updatedCV);
+  };
+
   return (
-    <CVContext.Provider value={{ cv, update, undo, redo }}>
+    <CVContext.Provider value={{ cv, update, undo, redo, removeFromMainGroup }}>
       {children}
     </CVContext.Provider>
   );

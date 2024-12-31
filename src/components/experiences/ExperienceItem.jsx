@@ -1,19 +1,29 @@
 import styled from "styled-components";
+import { useCV } from "../../CVContext";
 
-const ExperienceItem = ({ id, remove }) => {
+const ExperienceItem = ({ data, groupId }) => {
+  const { removeFromMainGroup } = useCV();
+
+  const handleRemove = () => {
+    removeFromMainGroup(data.id, groupId);
+  };
+
   return (
     <Root>
       <Line>
         <div />
       </Line>
       <div>
-        <p>Experience name {id}</p>
+        <strong>{data.title}</strong>
         <div>
-          <p>Depuis 2020</p>
+          <small style={{ color: "#777" }}>
+            {data.from}
+            {data.to ? ` - ${data.to}` : ""}
+          </small>
         </div>
       </div>
       <Actions>
-        <button onClick={remove}>X</button>
+        <button onClick={handleRemove}>X</button>
       </Actions>
     </Root>
   );

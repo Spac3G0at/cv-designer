@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import EditableInput from "../EditableInput";
+import alignArraysById from "../../utils/alignArraysById";
 
 const Template1 = () => {
   const { cv, update } = useCV();
@@ -97,12 +98,16 @@ const CVName = styled.div`
   font-size: 19px;
 `;
 
-const getMainComponent = (type, data) => {
+const getMainComponent = (type, data, groupId) => {
   switch (type) {
     case "experiences":
-      return <ExperiencesBlocks data={data} />;
+      return (
+        <ExperiencesBlocks groupId={groupId} title="Experiences" data={data} />
+      );
     case "education":
-      return <ExperiencesBlocks data={data} />;
+      return (
+        <ExperiencesBlocks groupId={groupId} title="Education" data={data} />
+      );
     case "skills":
       return (
         <div>
@@ -120,24 +125,9 @@ const handleBlocksMain = (main) => {
   const arr = main.map((item) => {
     return {
       id: item.id,
-      content: getMainComponent(item.type, item.data),
+      content: getMainComponent(item.type, item.data, item.id),
     };
   });
 
   return arr;
-};
-
-const alignArraysById = (array1, array2) => {
-  // Create a map for quick lookup of items in array2 by their id
-  const mapArray2 = new Map(array2.map((item) => [item.id, item]));
-
-  // Generate the aligned array2 based on array1's order
-  const alignedArray2 = array1.map((item) => mapArray2.get(item.id));
-
-  // Check if the original array2 is already aligned
-  const isAlreadyAligned = alignedArray2.every(
-    (item, index) => item.id === array2[index].id
-  );
-
-  return isAlreadyAligned ? null : alignedArray2;
 };

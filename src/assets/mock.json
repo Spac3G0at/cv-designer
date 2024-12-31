@@ -32,6 +32,7 @@
       "type": "experiences",
       "data": [
         {
+          "id": "exp1",
           "title": "Frontend Developer",
           "company": "ABC Company",
           "location": "New York, NY",
@@ -40,6 +41,7 @@
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         },
         {
+          "id": "exp2",
           "title": "Web Developer",
           "company": "XYZ Company",
           "location": "Los Angeles, CA",
@@ -48,6 +50,7 @@
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         },
         {
+          "id": "exp3",
           "title": "Junior Developer",
           "company": "123 Company",
           "location": "San Francisco, CA",
@@ -59,9 +62,10 @@
     },
     {
       "id": "education",
-      "type": "experiences",
+      "type": "education",
       "data": [
         {
+          "id": "ed1",
           "title": "Web Design",
           "institution": "XYZ Institution",
           "location": "Los Angeles, CA",
@@ -70,6 +74,7 @@
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         },
         {
+          "id": "ed2",
           "title": "Web Development",
           "institution": "123 Institution",
           "location": "San Francisco, CA",
