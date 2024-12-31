@@ -10,9 +10,21 @@ const Template1 = () => {
       height: "auto",
       content: <ExperiencesBlocks />,
     },
-    { id: "2", height: 140, content: <div>Formations</div> },
-    { id: "3", height: 90, content: <div>Compétences</div> },
-    { id: "4", height: 90, content: <div>Informatique</div> },
+    {
+      id: "2",
+      height: 140,
+      content: <div style={{ paddingTop: "30px" }}>Formations</div>,
+    },
+    {
+      id: "3",
+      height: 90,
+      content: <div style={{ paddingTop: "30px" }}>Compétences</div>,
+    },
+    {
+      id: "4",
+      height: 90,
+      content: <div style={{ paddingTop: "30px" }}>Informatique</div>,
+    },
   ]);
 
   return (
