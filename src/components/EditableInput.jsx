@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const EditableInput = ({ value, onSave }) => {
   const [editing, setEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const handleBlur = () => {
     setEditing(false);

@@ -18,7 +18,13 @@ export const CVProvider = ({ children }) => {
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
 
   const update = (newData) => {
-    console.log("NEWDATA", newData);
+    // Compare current CV data with the new data
+    if (JSON.stringify(cv) === JSON.stringify(newData)) {
+      console.log("No changes detected. Skipping update.");
+      return;
+    }
+
+    console.log("Updating CV:", newData);
     localStorage.setItem("cv", JSON.stringify(newData));
     setStack([...stack, newData]);
     setFuture([]); // Clear future states after a new update
