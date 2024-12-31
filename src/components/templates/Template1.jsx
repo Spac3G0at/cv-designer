@@ -2,8 +2,12 @@ import styled from "styled-components";
 import DragBlocks from "../draggables/DragBlocks";
 import { useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
+import { useCV } from "../../CVContext";
+import EditableInput from "../EditableInput";
 
 const Template1 = () => {
+  const { cv, update } = useCV();
+
   const [blocks, setBlocks] = useState([
     {
       id: "1",
@@ -27,6 +31,12 @@ const Template1 = () => {
     },
   ]);
 
+  const handleSave = (key, newValue) => {
+    console.log(newValue);
+    const updatedCV = { ...cv, [key]: newValue };
+    update(updatedCV); // Update the CV using context
+  };
+
   return (
     <Root>
       <SideBar>
@@ -35,6 +45,10 @@ const Template1 = () => {
         </SideContainer>
       </SideBar>
       <Main>
+        <EditableInput
+          value={cv.fullname}
+          onSave={(newValue) => handleSave("fullname", newValue)}
+        />
         <Username>John Doe</Username>
         <CVName>This is your CV content. Style it as you like!</CVName>
         <div style={{ width: "100%" }}>
@@ -57,6 +71,7 @@ const Root = styled.div`
 const SideBar = styled.div`
   width: 218px;
   background-color: #333333;
+  border-right: 1px solid #333333;
   color: #e4e4e4;
   max-width: 300px;
   min-width: 218px;

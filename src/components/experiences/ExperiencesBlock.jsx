@@ -61,13 +61,29 @@ const Actions = styled.div`
   position: absolute;
   top: 15px;
   left: 10px;
+  height: 26px;
+  display: flex;
+  align-items: center;
 
+  font-size: 12px;
+  line-height: 16px;
   opacity: 0; /* Hidden by default */
   visibility: hidden; /* Prevent interaction when hidden */
   transition: all 0.2s ease;
   & > button {
-    font-size: 12px;
     background: none;
+    color: #bfbfbf;
+    border: none;
+    padding: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      cursor: pointer;
+      color: white;
+    }
   }
 `;
 

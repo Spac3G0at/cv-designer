@@ -1,0 +1,101 @@
+{
+  "fullname": "John Doe",
+  "firstname": "John",
+  "lastname": "Doe",
+  "age": 25,
+  "email": "john.doe@anymail.com",
+  "address": "123 Main St, New York, NY 10030",
+  "phone": "123-456-7890",
+  "social": {
+    "facebook": "https://www.facebook.com/johndoe",
+    "twitter": "https://www.twitter.com/johndoe",
+    "linkedin": "https://www.linkedin.com/johndoe"
+  },
+  "languages": [
+    {
+      "name": "English",
+      "level": "Native"
+    },
+    {
+      "name": "Spanish",
+      "level": "Conversational"
+    }
+  ],
+  "hobbies": [
+    "Reading",
+    "Traveling",
+    "Photography"
+  ],
+  "main": [
+    {
+      "id": "experiences",
+      "type": "experiences",
+      "data": [
+        {
+          "title": "Frontend Developer",
+          "company": "ABC Company",
+          "location": "New York, NY",
+          "from": "2018",
+          "to": "Present",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        },
+        {
+          "title": "Web Developer",
+          "company": "XYZ Company",
+          "location": "Los Angeles, CA",
+          "from": "2015",
+          "to": "2018",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        },
+        {
+          "title": "Junior Developer",
+          "company": "123 Company",
+          "location": "San Francisco, CA",
+          "from": "2013",
+          "to": "2015",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "type": "experiences",
+      "data": [
+        {
+          "title": "Web Design",
+          "institution": "XYZ Institution",
+          "location": "Los Angeles, CA",
+          "from": "2015",
+          "to": "2016",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        },
+        {
+          "title": "Web Development",
+          "institution": "123 Institution",
+          "location": "San Francisco, CA",
+          "from": "2013",
+          "to": "2014",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        }
+      ]
+    },
+    {
+      "id": "softskills",
+      "type": "skills",
+      "data": [
+        {
+          "label": "Communication",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        },
+        {
+          "label": "Teamwork",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        },
+        {
+          "label": "Problem Solving",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+        }
+      ]
+    }
+  ]
+}

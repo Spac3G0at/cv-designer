@@ -3,8 +3,11 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import styled from "styled-components";
 import Template1 from "./templates/Template1";
+import { useCV } from "../CVContext";
 
 const CVGenerator = () => {
+  const { undo, redo } = useCV();
+
   const printRef = useRef();
 
   const handleDownloadPdf = async () => {
@@ -30,6 +33,10 @@ const CVGenerator = () => {
 
   return (
     <div>
+      <div>
+        <button onClick={undo}>undo</button>
+        <button onClick={redo}>redo</button>
+      </div>
       <PDFContainer ref={printRef}>
         <Template1 />
       </PDFContainer>
