@@ -61,8 +61,27 @@ export const CVProvider = ({ children }) => {
     update(updatedCV);
   };
 
+  const addItemToMainGroup = (item, groupId) => {
+    const updatedCV = {
+      ...cv,
+      main: cv.main.map((el) =>
+        el.id === groupId ? { ...el, data: [...el.data, item] } : el
+      ),
+    };
+    update(updatedCV);
+  };
+
   return (
-    <CVContext.Provider value={{ cv, update, undo, redo, removeFromMainGroup }}>
+    <CVContext.Provider
+      value={{
+        cv,
+        update,
+        undo,
+        redo,
+        removeFromMainGroup,
+        addItemToMainGroup,
+      }}
+    >
       {children}
     </CVContext.Provider>
   );

@@ -6,7 +6,7 @@ import { useCV } from "../../CVContext";
 import alignArraysById from "../../utils/alignArraysById";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
-  const { cv, update } = useCV();
+  const { cv, update, addItemToMainGroup } = useCV();
 
   const group = useMemo(
     () => cv.main.find((el) => el.id === groupId).data,
@@ -27,6 +27,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
+  // TODO Mode logic to CVContext
   const updateGroup = (newBlocks) => {
     // Compare data content directly to prevent unnecessary updates
     const aligned = alignArraysById(newBlocks, group);
@@ -54,22 +55,9 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     }
   };
 
-  const addItem = (e) => {
-    e.stopPropagation();
-    setBlocks((current) => [
-      ...current,
-      {
-        ...current[0],
-        id: `${current.length + 1}`,
-        content: (
-          <ExperienceItem
-            data={{ ...mockExperience, id: `mockExp_${Date.now()}` }}
-            id={`${current.length + 1}`}
-            groupId={groupId}
-          />
-        ),
-      },
-    ]);
+  const addItem = () => {
+    const item = generateMockItem();
+    addItemToMainGroup(item, groupId);
   };
 
   return (
@@ -130,17 +118,6 @@ const Root = styled.div`
   }
 `;
 
-const mockExperience = {
-  id: "mockExp",
-  title: "Web Development",
-  institution: "123 Institution",
-  location: "San Francisco, CA",
-  from: "2013",
-  to: "2014",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
-};
-
 const handleBlocks = (data, groupId) => {
   return data.map((experience) => ({
     id: experience.id,
@@ -148,4 +125,17 @@ const handleBlocks = (data, groupId) => {
       <ExperienceItem id={experience.id} data={experience} groupId={groupId} />
     ),
   }));
+};
+
+const generateMockItem = () => {
+  return {
+    id: `exp_${new Date().getTime()}`,
+    title: "Frontend Developer",
+    company: "ABC Company",
+    location: "New York, NY",
+    from: "2018",
+    to: "Present",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
+  };
 };
