@@ -21,11 +21,9 @@ export const CVProvider = ({ children }) => {
   const update = (newData) => {
     // Compare current CV data with the new data
     if (JSON.stringify(cv) === JSON.stringify(newData)) {
-      console.log("No changes detected. Skipping update.");
       return;
     }
 
-    console.log("Updating CV:", newData);
     localStorage.setItem("cv", JSON.stringify(newData));
     setStack([...stack, newData]);
     setFuture([]); // Clear future states after a new update
@@ -33,20 +31,23 @@ export const CVProvider = ({ children }) => {
 
   const undo = () => {
     if (stack.length > 1) {
+      const previousState = stack[stack.length - 2]; // The state before the most recent one
       setFuture([stack[stack.length - 1], ...future]);
       setStack(stack.slice(0, stack.length - 1));
-      localStorage.setItem(
-        "cv",
-        JSON.stringify(stack.slice(0, stack.length - 1))
-      );
+
+      // Update localStorage after the state change
+      localStorage.setItem("cv", JSON.stringify(previousState));
     }
   };
 
   const redo = () => {
     if (future.length > 0) {
-      setStack([...stack, future[0]]);
-      localStorage.setItem("cv", JSON.stringify(future[0]));
+      const nextState = future[0]; // The next state in the redo stack
+      setStack([...stack, nextState]);
       setFuture(future.slice(1));
+
+      // Update localStorage after the state change
+      localStorage.setItem("cv", JSON.stringify(nextState));
     }
   };
 
@@ -70,6 +71,13 @@ export const CVProvider = ({ children }) => {
       ),
     };
     update(updatedCV);
+  };
+
+  const updateMain = (data) => {
+    const aligned = alignArraysById(data, cv.main);
+    if (aligned) {
+      update({ ...cv, main: aligned });
+    }
   };
 
   const updateMainGroup = (blocks, groupId) => {
@@ -110,6 +118,7 @@ export const CVProvider = ({ children }) => {
         removeFromMainGroup,
         addItemToMainGroup,
         updateMainGroup,
+        updateMain,
       }}
     >
       {children}

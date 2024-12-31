@@ -4,10 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import EditableInput from "../EditableInput";
-import alignArraysById from "../../utils/alignArraysById";
 
 const Template1 = () => {
-  const { cv, update } = useCV();
+  const { cv, updateMain, update } = useCV();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -22,15 +21,7 @@ const Template1 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
-  const updateMain = (data) => {
-    const aligned = alignArraysById(data, main);
-    if (aligned) {
-      update({ ...cv, main: aligned });
-    }
-  };
-
   const handleSave = (key, newValue) => {
-    console.log(newValue);
     const updatedCV = { ...cv, [key]: newValue };
     update(updatedCV); // Update the CV using context
   };
