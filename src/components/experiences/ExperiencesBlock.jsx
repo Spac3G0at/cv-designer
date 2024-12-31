@@ -36,7 +36,9 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
       <p>{title}</p>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
-        <button onClick={addItem}>+ Ajouter</button>
+        <button onClick={addItem}>
+          <i className="fa-solid fa-plus"></i> Ajouter
+        </button>
       </Actions>
     </Root>
   );

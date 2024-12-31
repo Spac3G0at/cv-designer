@@ -5,6 +5,7 @@ const ExperienceItem = ({ data, groupId }) => {
   const { removeFromMainGroup } = useCV();
 
   const handleRemove = () => {
+    console.log("REMOVE");
     removeFromMainGroup(data.id, groupId);
   };
 
@@ -23,7 +24,9 @@ const ExperienceItem = ({ data, groupId }) => {
         </div>
       </div>
       <Actions>
-        <button onClick={handleRemove}>X</button>
+        <button onClick={handleRemove}>
+          <i className="fa-solid fa-trash"></i>
+        </button>
       </Actions>
     </Root>
   );
@@ -41,10 +44,19 @@ const Actions = styled.div`
   opacity: 0; /* Hidden by default */
   visibility: hidden; /* Prevent interaction when hidden */
   transition: all 0.2s ease;
-  & > button {
+  button {
     color: black;
     font-size: 12px;
     background: none;
+    outline: none;
+    border: none;
+    i {
+      pointer-events: none;
+    }
+    &:hover {
+      cursor: pointer;
+      color: #1e1e1e;
+    }
   }
 `;
 

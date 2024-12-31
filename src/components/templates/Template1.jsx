@@ -30,7 +30,9 @@ const Template1 = () => {
     <Root>
       <SideBar>
         <SideContainer>
-          <p>john.doe@anymail.com</p>
+          <p>
+            <i className="fa-solid fa-envelope"></i> john.doe@anymail.com
+          </p>
         </SideContainer>
       </SideBar>
       <Main>
@@ -38,7 +40,7 @@ const Template1 = () => {
           value={cv.fullname}
           onSave={(newValue) => handleSave("fullname", newValue)}
         />
-        <CVName>This is your CV content. Style it as you like!</CVName>
+        <CVName>Frontend web developer</CVName>
         <div style={{ width: "100%" }}>
           {" "}
           <DragBlocks main items={blocks} onReorder={setBlocks} />
@@ -73,13 +75,6 @@ const Main = styled.div`
   padding: 55px 36px;
   width: 100%;
 `;
-
-// const Username = styled.h1`
-//   line-height: 16px;
-//   font-size: 18px;
-//   font-weight: bold;
-//   margin-top: 0;
-// `;
 
 const CVName = styled.div`
   color: #2babe2;
