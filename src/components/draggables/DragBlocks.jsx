@@ -99,7 +99,7 @@ export default DragBlocks;
 
 const ItemRoot = styled.div`
   position: relative;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   /* background-color: white; */
   border-radius: 4px;
   align-items: center;

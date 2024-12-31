@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DragBlocks from "../draggables/DragBlocks";
 import { useState } from "react";
-import ExperiencesBlocks from "../ExperiencesBlock";
+import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 
 const Template1 = () => {
   const [blocks, setBlocks] = useState([

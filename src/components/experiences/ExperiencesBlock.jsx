@@ -1,11 +1,20 @@
 import { useState } from "react";
-import DragBlocks from "./draggables/DragBlocks";
+import DragBlocks from "../draggables/DragBlocks";
 import styled from "styled-components";
+import ExperienceItem from "./ExperienceItem";
 
 const ExperiencesBlocks = () => {
   const [block1, setBlock1] = useState([
-    { id: "1", height: "auto", content: <div>1</div> },
-    { id: "2", height: "auto", content: <div>2</div> },
+    {
+      id: "1",
+      height: "auto",
+      content: <ExperienceItem remove={() => removeItem("1")} />,
+    },
+    {
+      id: "2",
+      height: "auto",
+      content: <ExperienceItem remove={() => removeItem("2")} />,
+    },
   ]);
 
   const addItem = (e) => {
@@ -15,9 +24,16 @@ const ExperiencesBlocks = () => {
       {
         ...current[0],
         id: `${current.length + 1}`,
-        content: <div>{`${current.length + 1}`}</div>,
+        content: (
+          <ExperienceItem remove={() => removeItem(`${current.length + 1}`)} />
+        ),
       },
     ]);
+  };
+
+  const removeItem = (index) => {
+    console.log(block1.filter((_, e) => e.id !== index));
+    setBlock1((current) => current.filter((e) => e.id !== index));
   };
 
   const handleReorder = (newOrder) => {
