@@ -32,6 +32,7 @@ export const CVProvider = ({ children }) => {
 
   const undo = () => {
     if (stack.length > 1) {
+      console.log("UNDO");
       setFuture([stack[stack.length - 1], ...future]);
       setStack(stack.slice(0, stack.length - 1));
     }
