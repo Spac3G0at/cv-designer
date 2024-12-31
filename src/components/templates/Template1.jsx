@@ -47,7 +47,6 @@ const Template1 = () => {
           value={cv.fullname}
           onSave={(newValue) => handleSave("fullname", newValue)}
         />
-        <Username>John Doe</Username>
         <CVName>This is your CV content. Style it as you like!</CVName>
         <div style={{ width: "100%" }}>
           {" "}
@@ -84,12 +83,12 @@ const Main = styled.div`
   width: 100%;
 `;
 
-const Username = styled.h1`
-  line-height: 16px;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 0;
-`;
+// const Username = styled.h1`
+//   line-height: 16px;
+//   font-size: 18px;
+//   font-weight: bold;
+//   margin-top: 0;
+// `;
 
 const CVName = styled.div`
   color: #2babe2;

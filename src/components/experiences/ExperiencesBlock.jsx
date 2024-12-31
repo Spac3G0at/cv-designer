@@ -3,10 +3,9 @@ import DragBlocks from "../draggables/DragBlocks";
 import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
 import { useCV } from "../../CVContext";
-import alignArraysById from "../../utils/alignArraysById";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
-  const { cv, update, addItemToMainGroup } = useCV();
+  const { cv, updateMainGroup, addItemToMainGroup } = useCV();
 
   const group = useMemo(
     () => cv.main.find((el) => el.id === groupId).data,
@@ -23,37 +22,9 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
 
   // Update group data when blocks change
   useEffect(() => {
-    updateGroup(blocks);
+    updateMainGroup(blocks, groupId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
-
-  // TODO Mode logic to CVContext
-  const updateGroup = (newBlocks) => {
-    // Compare data content directly to prevent unnecessary updates
-    const aligned = alignArraysById(newBlocks, group);
-
-    // If data is not aligned, do the update
-    if (aligned) {
-      // Check if the group data really changed by comparing their content
-      const currentGroupData = group.map((exp) => exp.id);
-      const newGroupData = aligned.map((exp) => exp.id);
-
-      // If there is no change in the group data, do not update
-      if (JSON.stringify(currentGroupData) === JSON.stringify(newGroupData))
-        return;
-
-      const updatedCV = {
-        ...cv,
-        main: cv.main.map(
-          (el) =>
-            el.id === groupId
-              ? { ...el, data: aligned } // Update the group with aligned data
-              : el // Leave other groups unchanged
-        ),
-      };
-      update(updatedCV);
-    }
-  };
 
   const addItem = () => {
     const item = generateMockItem();

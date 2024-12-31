@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useMemo } from "react";
 import mock from "./assets/mock.json";
+import alignArraysById from "./utils/alignArraysById";
 
 // Create the context
 const CVContext = createContext();
@@ -71,6 +72,34 @@ export const CVProvider = ({ children }) => {
     update(updatedCV);
   };
 
+  const updateMainGroup = (blocks, groupId) => {
+    const group = cv.main.find((el) => el.id === groupId).data;
+
+    // Align the blocks with the current group data
+    const aligned = alignArraysById(blocks, group);
+
+    // If data is not aligned, do the update
+    if (aligned) {
+      const currentGroupData = group.map((exp) => exp.id);
+      const newGroupData = aligned.map((exp) => exp.id);
+
+      // If there is no change in the group data, do not update
+      if (JSON.stringify(currentGroupData) === JSON.stringify(newGroupData))
+        return;
+
+      const updatedCV = {
+        ...cv,
+        main: cv.main.map(
+          (el) =>
+            el.id === groupId
+              ? { ...el, data: aligned } // Update the group with aligned data
+              : el // Leave other groups unchanged
+        ),
+      };
+      update(updatedCV);
+    }
+  };
+
   return (
     <CVContext.Provider
       value={{
@@ -80,6 +109,7 @@ export const CVProvider = ({ children }) => {
         redo,
         removeFromMainGroup,
         addItemToMainGroup,
+        updateMainGroup,
       }}
     >
       {children}
