@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const ExperienceItem = ({ remove }) => {
+const ExperienceItem = ({ id, remove }) => {
   return (
     <Root>
       <Line>
         <div />
       </Line>
       <div>
-        <p>Experience name</p>
+        <p>Experience name {id}</p>
         <div>
           <p>Depuis 2020</p>
         </div>

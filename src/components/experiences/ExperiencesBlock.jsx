@@ -8,12 +8,12 @@ const ExperiencesBlocks = () => {
     {
       id: "1",
       height: "auto",
-      content: <ExperienceItem remove={() => removeItem("1")} />,
+      content: <ExperienceItem id={"1"} remove={() => removeItem("1")} />,
     },
     {
       id: "2",
       height: "auto",
-      content: <ExperienceItem remove={() => removeItem("2")} />,
+      content: <ExperienceItem id={"2"} remove={() => removeItem("2")} />,
     },
   ]);
 
@@ -25,7 +25,10 @@ const ExperiencesBlocks = () => {
         ...current[0],
         id: `${current.length + 1}`,
         content: (
-          <ExperienceItem remove={() => removeItem(`${current.length + 1}`)} />
+          <ExperienceItem
+            id={`${current.length + 1}`}
+            remove={() => removeItem(`${current.length + 1}`)}
+          />
         ),
       },
     ]);
