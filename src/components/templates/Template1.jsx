@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import DragBlocks from "../draggables/DragBlocks";
 import { useState } from "react";
+import ExperiencesBlocks from "../ExperiencesBlock";
 
 const Template1 = () => {
   const [blocks, setBlocks] = useState([
@@ -9,10 +10,9 @@ const Template1 = () => {
       height: "auto",
       content: <ExperiencesBlocks />,
     },
-    { id: "2", height: 140, content: <div>2</div> },
-    { id: "3", height: 90, content: <div>3</div> },
-    { id: "4", height: 130, content: <div>4</div> },
-    { id: "5", height: 100, content: <div>5</div> },
+    { id: "2", height: 140, content: <div>Formations</div> },
+    { id: "3", height: 90, content: <div>Compétences</div> },
+    { id: "4", height: 90, content: <div>Informatique</div> },
   ]);
 
   return (
@@ -25,7 +25,10 @@ const Template1 = () => {
       <Main>
         <Username>John Doe</Username>
         <CVName>This is your CV content. Style it as you like!</CVName>
-        <DragBlocks main items={blocks} onReorder={setBlocks} />
+        <div style={{ width: "100%" }}>
+          {" "}
+          <DragBlocks main items={blocks} onReorder={setBlocks} />
+        </div>
       </Main>
     </Root>
   );
@@ -53,6 +56,7 @@ const SideContainer = styled.div`
 
 const Main = styled.div`
   padding: 55px 36px;
+  width: 100%;
 `;
 
 const Username = styled.h1`
@@ -68,34 +72,3 @@ const CVName = styled.div`
   line-height: 17px;
   font-size: 19px;
 `;
-
-const ExperiencesBlocks = () => {
-  const [block1, setBlock1] = useState([
-    { id: "1", height: "auto", content: <div>1</div> },
-    { id: "2", height: "auto", content: <div>2</div> },
-  ]);
-
-  const addItem = (e) => {
-    e.stopPropagation();
-    setBlock1((current) => [
-      ...current,
-      {
-        ...current[0],
-        id: `${current.length + 1}`,
-        content: <div>{`${current.length + 1}`}</div>,
-      },
-    ]);
-  };
-
-  const handleReorder = (newOrder) => {
-    setBlock1(newOrder); // Update state with the new order
-  };
-
-  return (
-    <div style={{ width: "100%", paddingTop: "30px" }}>
-      <p>Expériences</p>
-      <DragBlocks items={block1} onReorder={handleReorder} />
-      <button onClick={addItem}>Add Item</button>
-    </div>
-  );
-};
