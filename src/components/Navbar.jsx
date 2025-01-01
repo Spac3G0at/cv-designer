@@ -27,6 +27,8 @@ const Navbar = () => {
 export default Navbar;
 
 const Root = styled.div`
+  z-index: 11;
+  position: relative;
   background-color: #333;
   color: white;
   /* padding: 10px; */

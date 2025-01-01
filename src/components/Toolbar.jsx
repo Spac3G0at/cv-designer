@@ -1,44 +1,113 @@
 import styled from "styled-components";
-import { useCV } from "../CVContext";
-import ColorPicker from "./ColorPicker";
+import { useState } from "react";
+import ToolbarMenu from "./toolbar_menus/ToolbarMenu";
 
 const Toolbar = () => {
-  const { updateSettings, settings } = useCV();
+  const tools = [
+    {
+      type: "font",
+      icon: "fa-solid fa-paintbrush",
+      label: "Layout",
+    },
+  ];
 
-  const changeTitleColor = (color) => {
-    updateSettings({ title_color: color });
+  const [open, setOpen] = useState(false);
+  const [menuType, setMenuType] = useState("font");
+
+  const toggleMenu = () => {
+    setOpen((c) => !c);
+  };
+
+  const openWithType = (type) => {
+    setMenuType(type);
+    toggleMenu();
   };
 
   return (
-    <Root>
-      <Content>
-        <span>Toolbar</span>
-        <ItemGroup>
-          <span>Title color</span>
-          <ColorPicker
-            onChange={changeTitleColor}
-            baseColor={settings.title_color}
+    <>
+      <Root>
+        <Content>
+          <Tools>
+            {tools.map((tool) => (
+              <ToolButton
+                key={tool.label}
+                active={String(menuType === tool.type)}
+                onClick={() => openWithType(tool.type)}
+              >
+                <i className={tool.icon}></i>
+                <span>{tool.label}</span>
+              </ToolButton>
+            ))}
+          </Tools>
+          <Background />
+          <ToolbarMenu
+            toggleOpen={toggleMenu}
+            menuType={menuType}
+            open={open}
           />
-        </ItemGroup>
-      </Content>
-    </Root>
+        </Content>
+      </Root>
+    </>
   );
 };
 
 export default Toolbar;
 
 const Root = styled.div`
-  padding: 10px;
   background-color: #333;
   display: flex;
   flex-direction: column;
-`;
-
-const ItemGroup = styled.div`
-  display: flex;
+  width: 90px;
 `;
 
 const Content = styled.div`
   position: sticky;
+  display: flex;
+  flex-direction: column;
   top: 0;
+  height: fit-content;
+  /* padding: 10px; */
+`;
+
+const Tools = styled.div`
+  z-index: 12;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Background = styled.div`
+  position: absolute;
+  z-index: 11;
+  background: #333;
+  width: 100%;
+  height: 100vh;
+`;
+
+const ToolButton = styled.button`
+  background: none;
+  font-weight: normal;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin-top: 10px;
+  padding: 5px;
+  span {
+    margin-top: 5px;
+  }
+  i {
+    font-size: 20px;
+  }
+  border: none;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+
+  /* Active state styling */
+  color: ${({ active }) =>
+    active === "true" ? "#ed2553" : "white"}; /* Set active bg color */
 `;

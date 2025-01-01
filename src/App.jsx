@@ -7,7 +7,7 @@ import Toolbar from "./components/Toolbar";
 
 function App() {
   return (
-    <div>
+    <div style={{ minHeight: "100vh" }}>
       <CVProvider>
         <Navbar />
         <Content>
