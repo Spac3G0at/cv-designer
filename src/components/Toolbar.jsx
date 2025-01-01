@@ -11,14 +11,16 @@ const Toolbar = () => {
 
   return (
     <Root>
-      <span>Toolbar</span>
-      <ItemGroup>
-        <span>Title color</span>
-        <ColorPicker
-          onChange={changeTitleColor}
-          baseColor={settings.title_color}
-        />
-      </ItemGroup>
+      <Content>
+        <span>Toolbar</span>
+        <ItemGroup>
+          <span>Title color</span>
+          <ColorPicker
+            onChange={changeTitleColor}
+            baseColor={settings.title_color}
+          />
+        </ItemGroup>
+      </Content>
     </Root>
   );
 };
@@ -28,13 +30,15 @@ export default Toolbar;
 const Root = styled.div`
   padding: 10px;
   background-color: #333;
-  position: fixed;
-  height: 100vh;
-  top: 0;
   display: flex;
   flex-direction: column;
 `;
 
 const ItemGroup = styled.div`
   display: flex;
+`;
+
+const Content = styled.div`
+  position: sticky;
+  top: 0;
 `;
