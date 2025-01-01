@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ToolbarMenu from "./toolbar_menus/ToolbarMenu";
 
 const Toolbar = () => {
@@ -14,18 +14,39 @@ const Toolbar = () => {
   const [open, setOpen] = useState(false);
   const [menuType, setMenuType] = useState("layout");
 
+  const toolbarRef = useRef(null); // Create a ref for the Root component
+
+  // Toggle the menu's open state
   const toggleMenu = () => {
     setOpen((c) => !c);
   };
 
+  // Set the menu type and toggle the menu
   const openWithType = (type) => {
     setMenuType(type);
     toggleMenu();
   };
 
+  // Close the menu if a click happens outside the toolbar
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (toolbarRef.current && !toolbarRef.current.contains(event.target)) {
+        setOpen(false); // Close the menu if the click is outside the toolbar
+      }
+    };
+
+    // Add event listener for click events
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <Root>
+      <Root ref={toolbarRef}>
         <Content>
           <Tools>
             {tools.map((tool) => (
@@ -66,7 +87,6 @@ const Content = styled.div`
   flex-direction: column;
   top: 0;
   height: fit-content;
-  /* padding: 10px; */
 `;
 
 const Tools = styled.div`
