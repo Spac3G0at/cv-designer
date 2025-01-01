@@ -5,14 +5,14 @@ import ToolbarMenu from "./toolbar_menus/ToolbarMenu";
 const Toolbar = () => {
   const tools = [
     {
-      type: "font",
+      type: "layout",
       icon: "fa-solid fa-paintbrush",
       label: "Layout",
     },
   ];
 
   const [open, setOpen] = useState(false);
-  const [menuType, setMenuType] = useState("font");
+  const [menuType, setMenuType] = useState("layout");
 
   const toggleMenu = () => {
     setOpen((c) => !c);
@@ -102,10 +102,6 @@ const ToolButton = styled.button`
     font-size: 20px;
   }
   border: none;
-  outline: none;
-  &:focus {
-    outline: none;
-  }
 
   /* Active state styling */
   color: ${({ active }) =>

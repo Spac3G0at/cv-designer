@@ -47,7 +47,6 @@ const Actions = styled.div`
     color: black;
     font-size: 12px;
     background: none;
-    outline: none;
     border: none;
     i {
       transition: color 0.2s ease;

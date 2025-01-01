@@ -30,6 +30,11 @@ export const CVProvider = ({ children }) => {
     setFuture([]); // Clear future states after a new update
   };
 
+  const updatePartial = (partial) => {
+    const updatedCV = { ...cv, ...partial };
+    update(updatedCV);
+  };
+
   const updateSettings = (newSettings) => {
     const updatedCV = { ...cv, settings: { ...settings, ...newSettings } };
     console.log(newSettings);
@@ -128,6 +133,7 @@ export const CVProvider = ({ children }) => {
         updateMain,
         settings,
         updateSettings,
+        updatePartial,
       }}
     >
       {children}

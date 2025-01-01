@@ -1,33 +1,15 @@
 import styled from "styled-components";
-import { useCV } from "../../CVContext";
-import ColorPicker from "../ColorPicker";
+import LayoutMenu from "./LayoutMenu";
 
 const ToolbarMenu = ({ open, menuType, toggleOpen }) => {
-  const { updateSettings, settings } = useCV();
-
-  const changeTitleColor = (color) => {
-    updateSettings({ title_color: color });
-  };
-
   return (
     <>
       <Handle className={`${open ? "open" : ""}`} onClick={toggleOpen}>
-        {!open && <i className="fa-solid fa-caret-right"></i>}
-        {open && <i className="fa-solid fa-caret-left"></i>}
+        <i className="fa-solid fa-caret-right"></i>
       </Handle>
 
       <Menu className={`${open ? "open" : ""}`}>
-        <Content>
-          {menuType === "font" && (
-            <ItemGroup>
-              <span>Title color</span>
-              <ColorPicker
-                onChange={changeTitleColor}
-                baseColor={settings.title_color}
-              />
-            </ItemGroup>
-          )}
-        </Content>
+        <Content>{menuType === "layout" && <LayoutMenu />}</Content>
       </Menu>
     </>
   );
@@ -53,7 +35,7 @@ const Menu = styled.div`
   }
 `;
 
-const Handle = styled.div`
+const Handle = styled.button`
   position: fixed;
   background-color: #4c4c4c;
   color: white;
@@ -71,13 +53,16 @@ const Handle = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 11;
+  padding: 0 3px 0px 0px;
+  i {
+    transition: transform 0.3s ease;
+  }
   &.open {
     left: calc(90px + 350px); /* Adjust this when the menu opens */
+    i {
+      transform: rotate(-180deg);
+    }
   }
-`;
-
-const ItemGroup = styled.div`
-  display: flex;
 `;
 
 const Content = styled.div`

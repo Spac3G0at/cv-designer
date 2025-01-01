@@ -71,9 +71,6 @@ const Actions = styled.div`
     padding: 0;
     margin-left: 5px;
     margin-right: 5px;
-    &:focus {
-      outline: none;
-    }
     &:hover {
       cursor: pointer;
       color: white;

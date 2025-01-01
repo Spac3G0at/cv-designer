@@ -3,10 +3,10 @@ import DragBlocks from "../draggables/DragBlocks";
 import { useEffect, useMemo, useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
-import EditableInput from "../EditableInput";
+import Template1Header from "./Template1Header";
 
 const Template1 = () => {
-  const { cv, updateMain, update, settings } = useCV();
+  const { cv, updateMain, settings } = useCV();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -21,11 +21,6 @@ const Template1 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
-  const handleSave = (key, newValue) => {
-    const updatedCV = { ...cv, [key]: newValue };
-    update(updatedCV); // Update the CV using context
-  };
-
   return (
     <Root>
       <SideBar>
@@ -36,10 +31,7 @@ const Template1 = () => {
         </SideContainer>
       </SideBar>
       <Main>
-        <EditableInput
-          value={cv.fullname}
-          onSave={(newValue) => handleSave("fullname", newValue)}
-        />
+        <Template1Header />
         <CVName style={{ color: `${settings.title_color}` }}>
           Frontend web developer
         </CVName>
