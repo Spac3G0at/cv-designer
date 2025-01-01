@@ -1,5 +1,4 @@
 import jsPDF from "jspdf";
-
 import font from "../assets/fa-solid-900.ttf";
 import styled from "styled-components";
 
@@ -12,26 +11,31 @@ const DownloadButton = () => {
       return;
     }
 
-    // Create a jsPDF instance with A4 dimensions
-    const pdf = new jsPDF("portrait", "pt", "a4");
+    // Create jsPDF instance with A4 page format
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "pt",
+      format: "a4",
+      compressPdf: true, // Enable PDF compression
+    });
 
     // A4 page dimensions in points
-    const pageWidth = 595.27; // -1 pt to avoid overflow
-    const pageHeight = 841.88; // -1 pt to avoid overflow
+    const pageWidth = 595.27; // A4 width -0.01
+    const pageHeight = 841.88; // A4 height -0.01
 
-    // Force the element to fit exactly within A4 page dimensions
+    // Get element dimensions
     const elementWidth = element.offsetWidth;
     const elementHeight = element.offsetHeight;
 
-    // Calculate the scale to fit the element within A4 dimensions
+    // Calculate scaling to fit the element within A4 dimensions
     const scaleX = pageWidth / elementWidth;
     const scaleY = pageHeight / elementHeight;
     const scale = Math.min(scaleX, scaleY); // Maintain aspect ratio
 
-    // Adjust the height to avoid overflow
+    // Ensure adjusted height does not overflow the page
     const adjustedHeight = Math.min(elementHeight * scale, pageHeight);
 
-    // Render the HTML into the PDF
+    // Render HTML content into the PDF
     await pdf.html(element, {
       callback: (doc) => {
         doc.save("cv.pdf"); // Save the PDF
@@ -39,23 +43,24 @@ const DownloadButton = () => {
       x: 0,
       y: 0,
       html2canvas: {
-        scale: scale, // Apply calculated scale
-        useCORS: true, // Allow cross-origin resources if needed
+        scale: scale, // Scale for accurate rendering
+        useCORS: true, // Allow cross-origin resources
         scrollX: 0, // Prevent scrolling artifacts
         scrollY: 0,
-        imageQuality: 0.8,
+        imageQuality: 0.5, // Compress images for smaller file size
       },
-      width: pageWidth, // Force content width to match page
-      height: adjustedHeight, // Restrict content height to avoid overflow
+      width: pageWidth, // Match A4 width
+      height: adjustedHeight, // Adjust content height to avoid overflow
       fontFaces: [
         {
-          family: "FontAwesome",
+          family: "FontAwesome", // Include the FontAwesome font
           style: "normal",
           weight: "900",
           src: [
             {
-              url: font,
+              url: font, // Use the imported font
               format: "truetype",
+              subset: true, // Embed only the used subset of the font
             },
           ],
         },
@@ -74,6 +79,7 @@ const DownloadButton = () => {
 
 export default DownloadButton;
 
+// Styled button
 const Button = styled.button`
   background: rgb(237, 37, 83);
   color: white;
