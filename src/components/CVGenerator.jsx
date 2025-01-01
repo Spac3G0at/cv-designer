@@ -23,6 +23,7 @@ const PDFContainer = styled.div`
   background-color: white;
   margin: 0 auto;
   color: black;
+  box-sizing: border-box;
   font-family: sans-serif;
   overflow: hidden;
   /* box-shadow: 0 0 10px rgba(245, 245, 245, 0.1); */
