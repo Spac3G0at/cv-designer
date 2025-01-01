@@ -52,7 +52,7 @@ const Toolbar = () => {
             {tools.map((tool) => (
               <ToolButton
                 key={tool.label}
-                active={String(menuType === tool.type)}
+                $active={String(menuType === tool.type)}
                 onClick={() => openWithType(tool.type)}
               >
                 <i className={tool.icon}></i>
@@ -124,6 +124,6 @@ const ToolButton = styled.button`
   border: none;
 
   /* Active state styling */
-  color: ${({ active }) =>
-    active === "true" ? "#ed2553" : "white"}; /* Set active bg color */
+  color: ${({ $active }) =>
+    $active === "true" ? "#ed2553" : "white"}; /* Set active bg color */
 `;
