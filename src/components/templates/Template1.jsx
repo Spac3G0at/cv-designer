@@ -6,7 +6,7 @@ import { useCV } from "../../CVContext";
 import EditableInput from "../EditableInput";
 
 const Template1 = () => {
-  const { cv, updateMain, update } = useCV();
+  const { cv, updateMain, update, settings } = useCV();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -40,7 +40,9 @@ const Template1 = () => {
           value={cv.fullname}
           onSave={(newValue) => handleSave("fullname", newValue)}
         />
-        <CVName>Frontend web developer</CVName>
+        <CVName style={{ color: `${settings.title_color}` }}>
+          Frontend web developer
+        </CVName>
         <div style={{ width: "100%" }}>
           {" "}
           <DragBlocks main items={blocks} onReorder={setBlocks} />
@@ -77,7 +79,6 @@ const Main = styled.div`
 `;
 
 const CVName = styled.div`
-  color: #2babe2;
   font-weight: bold;
   line-height: 17px;
   font-size: 19px;

@@ -5,7 +5,6 @@ const ExperienceItem = ({ data, groupId }) => {
   const { removeFromMainGroup } = useCV();
 
   const handleRemove = () => {
-    console.log("REMOVE");
     removeFromMainGroup(data.id, groupId);
   };
 
@@ -51,11 +50,14 @@ const Actions = styled.div`
     outline: none;
     border: none;
     i {
+      transition: color 0.2s ease;
       pointer-events: none;
     }
     &:hover {
       cursor: pointer;
-      color: #1e1e1e;
+      i {
+        color: #d00000;
+      }
     }
   }
 `;

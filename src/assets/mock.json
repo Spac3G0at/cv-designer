@@ -102,5 +102,11 @@
         }
       ]
     }
-  ]
+  ],
+  "settings": {
+    "theme": "light",
+    "font": "sans-serif",
+    "fontSize": "normal",
+    "title_color": "#2babe2"
+  }
 }

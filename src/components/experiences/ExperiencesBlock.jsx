@@ -5,7 +5,7 @@ import ExperienceItem from "./ExperienceItem";
 import { useCV } from "../../CVContext";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
-  const { cv, updateMainGroup, addItemToMainGroup } = useCV();
+  const { cv, updateMainGroup, addItemToMainGroup, settings } = useCV();
 
   const group = useMemo(
     () => cv.main.find((el) => el.id === groupId).data,
@@ -33,7 +33,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
 
   return (
     <Root style={{ width: "100%", paddingTop: "30px" }}>
-      <p>{title}</p>
+      <Title style={{ color: settings.title_color }}>{title}</Title>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
         <button onClick={addItem}>
@@ -45,6 +45,10 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
 };
 
 export default ExperiencesBlocks;
+
+const Title = styled.p`
+  font-weight: bold;
+`;
 
 const Actions = styled.div`
   background: #1a1a1a;

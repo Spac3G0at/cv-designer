@@ -17,6 +17,7 @@ export const CVProvider = ({ children }) => {
   const [future, setFuture] = useState([]);
 
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
+  const settings = useMemo(() => cv.settings, [cv]);
 
   const update = (newData) => {
     // Compare current CV data with the new data
@@ -27,6 +28,12 @@ export const CVProvider = ({ children }) => {
     localStorage.setItem("cv", JSON.stringify(newData));
     setStack([...stack, newData]);
     setFuture([]); // Clear future states after a new update
+  };
+
+  const updateSettings = (newSettings) => {
+    const updatedCV = { ...cv, settings: { ...settings, ...newSettings } };
+    console.log(newSettings);
+    update(updatedCV);
   };
 
   const undo = () => {
@@ -119,6 +126,8 @@ export const CVProvider = ({ children }) => {
         addItemToMainGroup,
         updateMainGroup,
         updateMain,
+        settings,
+        updateSettings,
       }}
     >
       {children}

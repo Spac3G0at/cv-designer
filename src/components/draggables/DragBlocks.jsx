@@ -105,6 +105,8 @@ const ItemRoot = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 16px;
+
+  touch-action: none;
   cursor: grab;
   &:hover {
     background: rgba(0, 0, 0, 0.05);
