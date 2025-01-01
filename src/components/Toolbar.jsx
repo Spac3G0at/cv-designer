@@ -3,17 +3,22 @@ import { useCV } from "../CVContext";
 import ColorPicker from "./ColorPicker";
 
 const Toolbar = () => {
-  const { updateSettings } = useCV();
+  const { updateSettings, settings } = useCV();
 
-  const changeColor = (color) => {
+  const changeTitleColor = (color) => {
     updateSettings({ title_color: color });
   };
 
   return (
     <Root>
       <span>Toolbar</span>
-      <button onClick={() => changeColor("#ed2553")}>Color title</button>
-      <ColorPicker />
+      <ItemGroup>
+        <span>Title color</span>
+        <ColorPicker
+          onChange={changeTitleColor}
+          baseColor={settings.title_color}
+        />
+      </ItemGroup>
     </Root>
   );
 };
@@ -28,4 +33,8 @@ const Root = styled.div`
   top: 0;
   display: flex;
   flex-direction: column;
+`;
+
+const ItemGroup = styled.div`
+  display: flex;
 `;
