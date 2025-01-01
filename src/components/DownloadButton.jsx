@@ -28,6 +28,8 @@ const DownloadButton = () => {
     // Adjust the height to avoid overflow
     const adjustedHeight = Math.min(elementHeight * scale, pageHeight);
 
+    pdf.setFont("fa-solid", "normal");
+
     // Render the HTML into the PDF
     await pdf.html(element, {
       callback: (doc) => {

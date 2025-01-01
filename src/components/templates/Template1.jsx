@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Template1 = () => {
   const { cv, updateMain, settings } = useCV();
@@ -27,8 +26,7 @@ const Template1 = () => {
       <SideBar>
         <SideContainer>
           <p>
-            <FontAwesomeIcon icon="fa-solid fa-envelope" />
-            {/* <i className="fa-solid fa-envelope"></i> */}
+            <i className="fa-solid fa-envelope"></i>
             john.doe@anymail.com
           </p>
         </SideContainer>
