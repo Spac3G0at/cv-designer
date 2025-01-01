@@ -77,7 +77,7 @@ const SortableItem = ({ id, height, children }) => {
     ),
     transition,
     height: `${height}px`,
-    zIndex: isDragging ? 100 : 1, // Set zIndex for the active item
+    zIndex: isDragging ? 2 : 1, // Set zIndex for the active item
     ...(isDragging ? { boxShadow: "0 4px 8px rgba(0,0,0,0.2)" } : {}), // Optional: Add a shadow for visual feedback
   };
 

@@ -79,6 +79,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: 90px;
+  z-index: 5;
 `;
 
 const Content = styled.div`
