@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
+import envelope from "../../assets/envelope.svg";
 
 const Template1 = () => {
   const { cv, updateMain, settings } = useCV();
@@ -26,7 +27,7 @@ const Template1 = () => {
       <SideBar>
         <SideContainer>
           <p>
-            <i className="fa-solid fa-envelope"></i>
+            <img style={{ width: "15px" }} src={envelope} alt="envelope" />
             john.doe@anymail.com
           </p>
         </SideContainer>
