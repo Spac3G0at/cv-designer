@@ -1,5 +1,8 @@
 import jsPDF from "jspdf";
 
+import font from "../assets/fa-solid-900.ttf";
+import styled from "styled-components";
+
 const DownloadButton = () => {
   const handleDownloadPdf = async () => {
     const element = document.querySelector("#cv");
@@ -40,26 +43,45 @@ const DownloadButton = () => {
         useCORS: true, // Allow cross-origin resources if needed
         scrollX: 0, // Prevent scrolling artifacts
         scrollY: 0,
+        imageQuality: 0.8,
       },
       width: pageWidth, // Force content width to match page
       height: adjustedHeight, // Restrict content height to avoid overflow
+      fontFaces: [
+        {
+          family: "FontAwesome",
+          style: "normal",
+          weight: "900",
+          src: [
+            {
+              url: font,
+              format: "truetype",
+            },
+          ],
+        },
+      ],
     });
   };
 
   return (
-    <button
-      style={{
-        background: "rgb(237, 37, 83)",
-        color: "white",
-        border: "none",
-        padding: "10px",
-        borderRadius: "5px",
-      }}
-      onClick={handleDownloadPdf}
-    >
-      <i className="fa-solid fa-download"></i> Download
-    </button>
+    <>
+      <Button onClick={handleDownloadPdf}>
+        <i className="fa-solid fa-download"></i> Download
+      </Button>
+    </>
   );
 };
 
 export default DownloadButton;
+
+const Button = styled.button`
+  background: rgb(237, 37, 83);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(220, 37, 83);
+  }
+`;
