@@ -5,12 +5,10 @@ import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
 import Icon from "../Icon";
-import useStyles from "../hooks/useStyles";
 import SkillsBlocks from "../skills/SkillsBlocks";
 
 const Template1 = () => {
   const { cv, updateMain } = useCV();
-  const styles = useStyles();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -35,7 +33,7 @@ const Template1 = () => {
           </p>
         </SideContainer>
       </SideBar>
-      <Main $styles={styles}>
+      <Main>
         <Template1Header />
 
         <Content>
@@ -51,15 +49,6 @@ export default Template1;
 const Main = styled.div`
   padding: 30px 36px;
   width: 100%;
-  .title-text {
-    color: ${({ $styles }) => $styles.titleColor};
-  }
-  .resume-title {
-    color: ${({ $styles }) => $styles.resumeTitleColor};
-  }
-  .company-label {
-    color: ${({ $styles }) => $styles.companyColor};
-  }
 `;
 
 const Root = styled.div`

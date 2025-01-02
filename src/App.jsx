@@ -5,19 +5,22 @@ import Navbar from "./components/Navbar";
 import { CVProvider } from "./CVContext";
 import Toolbar from "./components/Toolbar";
 import Modal from "./components/Modal";
+import ThemeProvider from "./assets/ThemeProvider";
 
 function App() {
   return (
     <Root>
       <CVProvider>
-        <Navbar />
-        <Content>
-          <Toolbar />
-          <CVContainer>
-            <CVGenerator />
-          </CVContainer>
-        </Content>
-        <Modal />
+        <ThemeProvider>
+          <Navbar />
+          <Content>
+            <Toolbar />
+            <CVContainer>
+              <CVGenerator />
+            </CVContainer>
+          </Content>
+          <Modal />
+        </ThemeProvider>
       </CVProvider>
     </Root>
   );
