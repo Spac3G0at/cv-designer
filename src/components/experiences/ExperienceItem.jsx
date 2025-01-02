@@ -23,10 +23,10 @@ const ExperienceItem = ({ data, groupId }) => {
       <div>
         <strong>{data.title}</strong>
         <div>
-          <small style={{ color: "#777" }}>
+          <Dates>
             {data.from}
             {data.to ? ` - ${data.to}` : ""}
-          </small>
+          </Dates>
         </div>
       </div>
       <Actions>
@@ -95,4 +95,8 @@ const Line = styled.div`
     margin-left: -5px;
     margin-top: 6px;
   }
+`;
+
+const Dates = styled.small`
+  color: #777777;
 `;

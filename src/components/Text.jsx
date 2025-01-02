@@ -22,7 +22,7 @@ const Text = ({
   const Tag = element; // Dynamically use the tag name (p, h1, h3, etc.)
 
   return (
-    <Root style={{ display: "inline-block" }}>
+    <Root>
       <Tag
         style={{
           ...style,

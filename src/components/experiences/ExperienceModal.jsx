@@ -24,7 +24,7 @@ const ExperienceModal = ({ onAdd, cancel }) => {
           id="title"
           {...register("title", { required: "Title is required." })}
         />
-        {errors.title && <p style={{ color: "red" }}>{errors.title.message}</p>}
+        {errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
       </FormGroup>
       <FormGroup>
         <label htmlFor="company">Company:</label>
@@ -33,7 +33,7 @@ const ExperienceModal = ({ onAdd, cancel }) => {
           {...register("company", { required: "Company is required." })}
         />
         {errors.company && (
-          <p style={{ color: "red" }}>{errors.company.message}</p>
+          <ErrorMessage>{errors.company.message}</ErrorMessage>
         )}
       </FormGroup>
 
@@ -49,7 +49,7 @@ const ExperienceModal = ({ onAdd, cancel }) => {
           type="date"
           {...register("from", { required: "Start date is required." })}
         />
-        {errors.from && <p style={{ color: "red" }}>{errors.from.message}</p>}
+        {errors.from && <ErrorMessage>{errors.from.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
@@ -64,7 +64,7 @@ const ExperienceModal = ({ onAdd, cancel }) => {
               "End date must be after the start date.",
           })}
         />
-        {errors.to && <p style={{ color: "red" }}>{errors.to.message}</p>}
+        {errors.to && <ErrorMessage>{errors.to.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
@@ -132,15 +132,6 @@ const CancelButton = styled.button`
   width: 100px;
 `;
 
-// const generateMockItem = (title) => {
-//   return {
-//     id: `exp_${new Date().getTime()}`,
-//     title: title,
-//     company: "ABC Company",
-//     location: "New York, NY",
-//     from: "2018",
-//     to: "Present",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
-//   };
-// };
+const ErrorMessage = styled.small`
+  color: red;
+`;

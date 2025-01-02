@@ -49,19 +49,13 @@ const DragBlocks = ({ items, main, onReorder }) => {
       onDragStart={handleDragStart}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        <div
-          style={{
-            ...(isDragging && main
-              ? { boxShadow: "0 4px 8px rgba(0,0,0,0.2)" }
-              : {}),
-          }}
-        >
+        <Content $shadow={isDragging && main}>
           {items.map((item) => (
             <SortableItem key={item.id} id={item.id} height={item.height}>
               {item.content}
             </SortableItem>
           ))}
-        </div>
+        </Content>
       </SortableContext>
     </DndContext>
   );
@@ -117,4 +111,9 @@ const ItemRoot = styled.div`
   &:hover {
     background: rgba(0, 0, 0, 0.05);
   }
+`;
+
+const Content = styled.div`
+  box-shadow: ${({ $shadow }) =>
+    $shadow ? "0 4px 8px rgba(0,0,0,0.2)" : "none"};
 `;

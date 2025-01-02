@@ -8,7 +8,7 @@ import Modal from "./components/Modal";
 
 function App() {
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <Root>
       <CVProvider>
         <Navbar />
         <Content>
@@ -19,11 +19,15 @@ function App() {
         </Content>
         <Modal />
       </CVProvider>
-    </div>
+    </Root>
   );
 }
 
 export default App;
+
+const Root = styled.div`
+  min-height: 100vh;
+`;
 
 const Content = styled.div`
   display: flex;

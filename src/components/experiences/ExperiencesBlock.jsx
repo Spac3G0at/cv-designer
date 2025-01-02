@@ -49,7 +49,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
   };
 
   return (
-    <Root style={{ width: "100%", paddingTop: "30px" }}>
+    <Root>
       <Text onChange={handleTitleChange} className="title-text" element={Title}>
         {title}
       </Text>

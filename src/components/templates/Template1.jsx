@@ -37,10 +37,9 @@ const Template1 = () => {
       <Main $styles={styles}>
         <Template1Header />
         <CVName className="resume-title">Frontend web developer</CVName>
-        <div style={{ width: "100%" }}>
-          {" "}
+        <Content>
           <DragBlocks main items={blocks} onReorder={setBlocks} />
-        </div>
+        </Content>
       </Main>
     </Root>
   );
@@ -63,6 +62,10 @@ const Root = styled.div`
   font-size: 12px;
   display: flex;
   height: 100%;
+`;
+
+const Content = styled.div`
+  width: 100%;
 `;
 
 const SideBar = styled.div`
