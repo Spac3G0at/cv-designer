@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useCV } from "../../CVContext";
-import Text from "../Text";
+import Text from "../../components/Text";
 
 const Template1Header = () => {
   const { cv, updatePartial } = useCV();

@@ -129,6 +129,7 @@
     "company_color": "#2babe2",
     "title_color": "#2babe2",
     "name_color": "#000000",
-    "timeline": true
+    "timeline": true,
+    "template": "default"
   }
 }

@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import Template1 from "./templates/Template1";
+import Template1 from "../templates/SideColumn.jsx/Template1";
+import { useCV } from "../CVContext";
+import TemplateTopInfos from "../templates/TopInfos/TemplateTopInfos";
 
 const CVGenerator = () => {
   return (
     <Root>
       <PDFContainer id="cv">
-        <Template1 />
+        <Template />
       </PDFContainer>
     </Root>
   );
@@ -29,3 +31,15 @@ const PDFContainer = styled.div`
   overflow: hidden;
   /* box-shadow: 0 0 10px rgba(245, 245, 245, 0.1); */
 `;
+
+const Template = () => {
+  const {
+    settings: { template },
+  } = useCV();
+  switch (template) {
+    case "topinfos":
+      return <TemplateTopInfos />;
+    default:
+      return <Template1 />;
+  }
+};

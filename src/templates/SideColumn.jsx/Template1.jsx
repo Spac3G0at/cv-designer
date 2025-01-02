@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import DragBlocks from "../draggables/DragBlocks";
+import DragBlocks from "../../components/draggables/DragBlocks";
 import { useEffect, useMemo, useState } from "react";
-import ExperiencesBlocks from "../experiences/ExperiencesBlock";
+import ExperiencesBlocks from "../../components/experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
-import Icon from "../Icon";
-import SkillsBlocks from "../skills/SkillsBlocks";
+import Icon from "../../components/Icon";
+import SkillsBlocks from "../../components/skills/SkillsBlocks";
 
 const Template1 = () => {
   const { cv, updateMain } = useCV();
@@ -48,7 +48,7 @@ export default Template1;
 
 const Main = styled.div`
   padding: 30px 36px;
-  width: 100%;
+  width: calc(100% - (36px * 2px));
 `;
 
 const Root = styled.div`

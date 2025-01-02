@@ -5,6 +5,11 @@ import ToolbarMenu from "./toolbar_menus/ToolbarMenu";
 const Toolbar = () => {
   const tools = [
     {
+      type: "template",
+      icon: "fa-solid fa-file-lines",
+      label: "Template",
+    },
+    {
       type: "layout",
       icon: "fa-solid fa-paintbrush",
       label: "Layout",
@@ -23,8 +28,8 @@ const Toolbar = () => {
 
   // Set the menu type and toggle the menu
   const openWithType = (type) => {
+    type === menuType ? toggleMenu() : setOpen(true);
     setMenuType(type);
-    toggleMenu();
   };
 
   // Close the menu if a click happens outside the toolbar

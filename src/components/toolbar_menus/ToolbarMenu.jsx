@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LayoutMenu from "./LayoutMenu";
+import TemplateMenu from "./TemplateMenu";
 
 const ToolbarMenu = ({ open, menuType, toggleOpen }) => {
   return (
@@ -9,10 +10,23 @@ const ToolbarMenu = ({ open, menuType, toggleOpen }) => {
       </Handle>
 
       <Menu className={`${open ? "open" : ""}`}>
-        <Content>{menuType === "layout" && <LayoutMenu />}</Content>
+        <Content>
+          <Currentmenu menu={menuType} />
+        </Content>
       </Menu>
     </>
   );
+};
+
+const Currentmenu = ({ menu }) => {
+  switch (menu) {
+    case "layout":
+      return <LayoutMenu />;
+    case "template":
+      return <TemplateMenu />;
+    default:
+      return null;
+  }
 };
 
 export default ToolbarMenu;
