@@ -16,7 +16,7 @@ const ExperienceModal = ({ onAdd, cancel }) => {
       title: data.title,
       location: data.location,
       from: new Date(data.from),
-      to: new Date(data.to),
+      to: data.to ? new Date(data.to) : null,
       description: data.description,
     };
     onAdd(item);

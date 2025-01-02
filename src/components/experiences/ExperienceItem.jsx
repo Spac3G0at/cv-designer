@@ -20,6 +20,11 @@ const ExperienceItem = ({ data, groupId, last }) => {
     });
   };
 
+  const from = formatDate(data.from);
+  const to = formatDate(data.to);
+  const dateString =
+    from === to ? from : `${from}${data.to ? ` - ${to}` : " - Present"}`;
+
   return (
     <Root>
       {timeline && (
@@ -30,10 +35,7 @@ const ExperienceItem = ({ data, groupId, last }) => {
       <Content $last={last}>
         <strong>{data.title}</strong>
         <div>
-          <Infos>
-            {formatDate(data.from)}
-            {data.to ? ` - ${formatDate(data.to)}` : ""}
-          </Infos>{" "}
+          <Infos>{dateString}</Infos>{" "}
           <small className="company-label">{data.company}</small>{" "}
           <Infos>{data.location}</Infos>
         </div>
