@@ -153,6 +153,8 @@ export const CVProvider = ({ children }) => {
         setModal,
         closeModal,
         modal,
+        canRedo: future.length > 0,
+        canUndo: stack.length > 1,
       }}
     >
       {children}

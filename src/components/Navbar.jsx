@@ -3,17 +3,17 @@ import { useCV } from "../CVContext";
 import DownloadButton from "./DownloadButton";
 
 const Navbar = () => {
-  const { undo, redo } = useCV();
+  const { undo, redo, canRedo, canUndo } = useCV();
 
   return (
     <Root>
       <nav>
         <div>Navbar</div>
         <RedoUndoBtnGroup>
-          <button onClick={undo}>
+          <button disabled={!canUndo} onClick={undo}>
             <i className="fa-solid fa-arrow-rotate-left"></i>
           </button>
-          <button onClick={redo}>
+          <button disabled={!canRedo} onClick={redo}>
             <i className="fa-solid fa-rotate-right"></i>
           </button>
         </RedoUndoBtnGroup>
@@ -50,5 +50,10 @@ const RedoUndoBtnGroup = styled.div`
     background-color: #555;
     color: white;
     cursor: pointer;
+    &:disabled {
+      color: grey;
+      background-color: #1d1d1d;
+      cursor: not-allowed;
+    }
   }
 `;
