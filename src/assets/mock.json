@@ -107,7 +107,9 @@
     "theme": "light",
     "font": "sans-serif",
     "fontSize": "normal",
+    "resume_title_color": "#2babe2",
     "title_color": "#2babe2",
-    "name_color": "#000"
+    "name_color": "#000",
+    "timeline": true
   }
 }

@@ -2,7 +2,12 @@ import styled from "styled-components";
 import { useCV } from "../../CVContext";
 
 const ExperienceItem = ({ data, groupId }) => {
-  const { removeFromMainGroup } = useCV();
+  const {
+    removeFromMainGroup,
+    cv: {
+      settings: { timeline },
+    },
+  } = useCV();
 
   const handleRemove = () => {
     removeFromMainGroup(data.id, groupId);
@@ -10,9 +15,11 @@ const ExperienceItem = ({ data, groupId }) => {
 
   return (
     <Root>
-      <Line>
-        <div />
-      </Line>
+      {timeline && (
+        <Line>
+          <div />
+        </Line>
+      )}
       <div>
         <strong>{data.title}</strong>
         <div>

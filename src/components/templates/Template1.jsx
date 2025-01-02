@@ -7,7 +7,11 @@ import Template1Header from "./Template1Header";
 import Icon from "../Icon";
 
 const Template1 = () => {
-  const { cv, updateMain, settings } = useCV();
+  const {
+    cv,
+    updateMain,
+    settings: { resume_title_color },
+  } = useCV();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -34,7 +38,7 @@ const Template1 = () => {
       </SideBar>
       <Main>
         <Template1Header />
-        <CVName style={{ color: `${settings.title_color}` }}>
+        <CVName style={{ color: `${resume_title_color}` }}>
           Frontend web developer
         </CVName>
         <div style={{ width: "100%" }}>
@@ -70,6 +74,9 @@ const SideContainer = styled.div`
 const Main = styled.div`
   padding: 55px 36px;
   width: 100%;
+  .title-text {
+    color: red;
+  }
 `;
 
 const CVName = styled.div`

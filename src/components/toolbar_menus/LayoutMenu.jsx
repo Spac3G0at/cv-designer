@@ -5,6 +5,8 @@ import ColorPicker from "../ColorPicker";
 const LayoutMenu = () => {
   const { settings, updateSettings } = useCV();
 
+  console.log(settings);
+
   const updateProperty = (property, value) => {
     updateSettings({ [property]: value });
   };
@@ -21,11 +23,45 @@ const LayoutMenu = () => {
       </ItemGroup>
 
       <ItemGroup>
+        <span>Resume title color</span>
+        <ColorPicker
+          onChange={(color) => updateProperty("resume_title_color", color)}
+          baseColor={settings.resume_title_color}
+        />
+      </ItemGroup>
+
+      <ItemGroup>
         <span>Title color</span>
         <ColorPicker
           onChange={(color) => updateProperty("title_color", color)}
           baseColor={settings.title_color}
         />
+      </ItemGroup>
+
+      <ItemGroup>
+        <span>Display timeline</span>
+
+        <label>
+          <input
+            type="radio"
+            id="huey"
+            name="drone"
+            checked={settings.timeline}
+            onClick={() => updateProperty("timeline", true)}
+          />
+          Yes
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            id="dewey"
+            name="drone"
+            checked={!settings.timeline}
+            onClick={() => updateProperty("timeline", false)}
+          />
+          No
+        </label>
       </ItemGroup>
     </div>
   );
@@ -44,5 +80,15 @@ const ItemGroup = styled.div`
   span {
     padding-right: 10px;
     width: 50%;
+  }
+  label {
+    input[type="radio"] {
+      cursor: pointer;
+    }
+    cursor: pointer;
+    margin-right: 10px;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 `;
