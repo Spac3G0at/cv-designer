@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useCV } from "../../CVContext";
+import ConfirmModal from "../ConfirmModal";
 
 const ExperienceItem = ({ data, groupId, last }) => {
   const {
@@ -7,10 +8,16 @@ const ExperienceItem = ({ data, groupId, last }) => {
     cv: {
       settings: { timeline },
     },
+    setModal,
   } = useCV();
 
   const handleRemove = () => {
-    removeFromMainGroup(data.id, groupId);
+    setModal(
+      <ConfirmModal
+        text="Remove this item ?"
+        confirm={() => removeFromMainGroup(data.id, groupId)}
+      />
+    );
   };
 
   const formatDate = (date) => {
