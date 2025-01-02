@@ -8,6 +8,8 @@ const Text = ({
   onChange,
   ...props
 }) => {
+  const editable = canEdit && Boolean(onChange);
+
   const handleBlur = (e) => {
     onChange(e.target.innerText);
   };
@@ -25,9 +27,10 @@ const Text = ({
     <Root>
       <Tag
         style={{
+          cursor: editable ? "pointer" : "default",
           ...style,
         }}
-        contentEditable={canEdit && Boolean(onChange)}
+        contentEditable={editable}
         suppressContentEditableWarning
         spellCheck="false" // Disable spell checking
         onBlur={handleBlur}
