@@ -37,27 +37,27 @@
           "title": "Frontend Developer",
           "company": "ABC Company",
           "location": "New York, NY",
-          "from": "2018",
-          "to": "Present",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+          "from": "2024-12-15T23:00:00+00:00",
+          "to": "2023-11-16T23:00:00+00:00",
+          "description": "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>"
         },
         {
           "id": "exp2",
           "title": "Web Developer",
           "company": "XYZ Company",
           "location": "Los Angeles, CA",
-          "from": "2015",
-          "to": "2018",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+          "from": "2024-12-15T23:00:00+00:00",
+          "to": "2023-11-16T23:00:00+00:00",
+          "description": "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>"
         },
         {
           "id": "exp3",
           "title": "Junior Developer",
           "company": "123 Company",
           "location": "San Francisco, CA",
-          "from": "2013",
-          "to": "2015",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+          "from": "2024-12-15T23:00:00+00:00",
+          "to": "2023-11-16T23:00:00+00:00",
+          "description": "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>"
         }
       ]
     },
@@ -71,18 +71,18 @@
           "title": "Web Design",
           "institution": "XYZ Institution",
           "location": "Los Angeles, CA",
-          "from": "2015",
-          "to": "2016",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+          "from": "2024-12-15T23:00:00+00:00",
+          "to": "2023-11-16T23:00:00+00:00",
+          "description": "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>"
         },
         {
           "id": "ed2",
           "title": "Web Development",
           "institution": "123 Institution",
           "location": "San Francisco, CA",
-          "from": "2013",
-          "to": "2014",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
+          "from": "2024-12-15T23:00:00+00:00",
+          "to": "2023-11-16T23:00:00+00:00",
+          "description": "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>"
         }
       ]
     },
@@ -92,15 +92,30 @@
       "title": "Softskills",
       "data": [
         {
+          "id": "sk_1",
           "label": "Communication",
+          "skills": [
+            "Listening",
+            "Speaking"
+          ],
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         },
         {
+          "id": "sk_2",
           "label": "Teamwork",
+          "skills": [
+            "Collaboration",
+            "Leadership"
+          ],
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         },
         {
+          "id": "sk_3",
           "label": "Problem Solving",
+          "skills": [
+            "Critical Thinking",
+            "Creativity"
+          ],
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc."
         }
       ]
@@ -111,6 +126,7 @@
     "font": "sans-serif",
     "fontSize": "normal",
     "resume_title_color": "#2babe2",
+    "company_color": "#2babe2",
     "title_color": "#2babe2",
     "name_color": "#000000",
     "timeline": true

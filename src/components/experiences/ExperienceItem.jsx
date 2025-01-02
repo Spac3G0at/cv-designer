@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useCV } from "../../CVContext";
 
-const ExperienceItem = ({ data, groupId }) => {
+const ExperienceItem = ({ data, groupId, last }) => {
   const {
     removeFromMainGroup,
     cv: {
@@ -13,6 +13,13 @@ const ExperienceItem = ({ data, groupId }) => {
     removeFromMainGroup(data.id, groupId);
   };
 
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      // month: "short",
+      year: "numeric",
+    });
+  };
+
   return (
     <Root>
       {timeline && (
@@ -20,15 +27,18 @@ const ExperienceItem = ({ data, groupId }) => {
           <div />
         </Line>
       )}
-      <div>
+      <Content $last={last}>
         <strong>{data.title}</strong>
         <div>
-          <Dates>
-            {data.from}
-            {data.to ? ` - ${data.to}` : ""}
-          </Dates>
+          <Infos>
+            {formatDate(data.from)}
+            {data.to ? ` - ${formatDate(data.to)}` : ""}
+          </Infos>{" "}
+          <small className="company-label">{data.company}</small>{" "}
+          <Infos>{data.location}</Infos>
         </div>
-      </div>
+        <Description dangerouslySetInnerHTML={{ __html: data.description }} />
+      </Content>
       <Actions>
         <button onClick={handleRemove}>
           <i className="fa-solid fa-trash"></i>
@@ -93,10 +103,22 @@ const Line = styled.div`
     background: black;
     border-radius: 50%;
     margin-left: -5px;
-    margin-top: 6px;
+    margin-top: 8px;
   }
 `;
 
-const Dates = styled.small`
+const Infos = styled.small`
   color: #777777;
+  &:last-of-type {
+    color: #444444;
+  }
+`;
+
+const Content = styled.div`
+  padding-bottom: ${({ $last }) => ($last ? "5px" : "10px")};
+`;
+
+const Description = styled.div`
+  font-size: 12px;
+  color: #444444;
 `;

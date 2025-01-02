@@ -6,6 +6,7 @@ import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
 import Icon from "../Icon";
 import useStyles from "../hooks/useStyles";
+import SkillsBlocks from "../skills/SkillsBlocks";
 
 const Template1 = () => {
   const { cv, updateMain } = useCV();
@@ -30,13 +31,13 @@ const Template1 = () => {
         <SideContainer>
           <p>
             <Icon icon={"\uf0e0"} />
-            John Doe john.doe@anymail.com
+            {cv.email}
           </p>
         </SideContainer>
       </SideBar>
       <Main $styles={styles}>
         <Template1Header />
-        <CVName className="resume-title">Frontend web developer</CVName>
+
         <Content>
           <DragBlocks main items={blocks} onReorder={setBlocks} />
         </Content>
@@ -48,13 +49,16 @@ const Template1 = () => {
 export default Template1;
 
 const Main = styled.div`
-  padding: 55px 36px;
+  padding: 30px 36px;
   width: 100%;
   .title-text {
     color: ${({ $styles }) => $styles.titleColor};
   }
   .resume-title {
     color: ${({ $styles }) => $styles.resumeTitleColor};
+  }
+  .company-label {
+    color: ${({ $styles }) => $styles.companyColor};
   }
 `;
 
@@ -78,13 +82,7 @@ const SideBar = styled.div`
 `;
 
 const SideContainer = styled.div`
-  padding: 55px 36px;
-`;
-
-const CVName = styled.div`
-  font-weight: bold;
-  line-height: 17px;
-  font-size: 19px;
+  padding: 38px 36px;
 `;
 
 const getMainComponent = (type, data, title, groupId) => {
@@ -94,13 +92,7 @@ const getMainComponent = (type, data, title, groupId) => {
     case "education":
       return <ExperiencesBlocks groupId={groupId} title={title} data={data} />;
     case "skills":
-      return (
-        <div>
-          {data.map((skill) => (
-            <p key={skill.label}>{skill.label}</p>
-          ))}
-        </div>
-      );
+      return <SkillsBlocks groupId={groupId} title={title} data={data} />;
     default:
       return null;
   }

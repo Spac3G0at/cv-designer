@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import DragBlocks from "../draggables/DragBlocks";
 import styled from "styled-components";
-import ExperienceItem from "./ExperienceItem";
+
 import { useCV } from "../../CVContext";
-import ExperienceModal from "./ExperienceModal";
+
 import Text from "../Text";
 
-const ExperiencesBlocks = ({ data, title, groupId }) => {
+const SkillsBlocks = ({ data, title, groupId }) => {
   const {
     cv,
     updateMainGroup,
@@ -36,7 +36,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
   }, [blocks]);
 
   const openModal = () => {
-    setModal(<ExperienceModal onAdd={handleAddItem} cancel={closeModal} />);
+    // setModal(<ExperienceModal onAdd={handleAddItem} cancel={closeModal} />);
   };
 
   const handleAddItem = (item) => {
@@ -63,7 +63,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
   );
 };
 
-export default ExperiencesBlocks;
+export default SkillsBlocks;
 
 const Title = styled.p`
   font-weight: bold;
@@ -113,15 +113,21 @@ const Root = styled.div`
 `;
 
 const handleBlocks = (data, groupId) => {
-  return data.map((experience, index) => ({
-    id: experience.id,
-    content: (
-      <ExperienceItem
-        id={experience.id}
-        data={experience}
-        groupId={groupId}
-        last={index + 1 === data.length}
-      />
-    ),
+  return data.map((skills, index) => ({
+    id: skills.id,
+    content: <Item key={skills.id} skills={skills} />,
   }));
+};
+
+const Item = ({ skills }) => {
+  return (
+    <div style={{ marginBottom: "20px" }}>
+      <strong>{skills.label}</strong>
+      <ul style={{ margin: 0, fontSize: "13px", paddingLeft: "16px" }}>
+        {skills.skills.map((el) => (
+          <li key={el}>{el}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };

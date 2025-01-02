@@ -9,6 +9,7 @@ const useStyles = () => {
     titleColor: settings.title_color,
     resumeTitleColor: settings.resume_title_color,
     nameColor: settings.name_color,
+    companyColor: settings.company_color,
   };
 };
 

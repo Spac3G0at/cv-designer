@@ -10,7 +10,15 @@ const ExperienceModal = ({ onAdd, cancel }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const item = { ...data, id: `exp_${new Date().getTime()}` };
+    const item = {
+      id: `exp_${new Date().getTime()}`,
+      company: data.company,
+      title: data.title,
+      location: data.location,
+      from: new Date(data.from),
+      to: new Date(data.to),
+      description: data.description,
+    };
     onAdd(item);
   };
 

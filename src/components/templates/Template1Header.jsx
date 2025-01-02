@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useCV } from "../../CVContext";
 import Text from "../Text";
 
@@ -18,8 +19,16 @@ const Template1Header = () => {
       >
         {cv.fullname}
       </Text>
+
+      <CVName className="resume-title">Frontend web developer</CVName>
     </div>
   );
 };
 
 export default Template1Header;
+
+const CVName = styled.div`
+  font-weight: bold;
+  line-height: 17px;
+  font-size: 19px;
+`;
