@@ -14,9 +14,10 @@ const Template1Header = () => {
           lineHeight: "28px",
           color: settings.name_color,
         }}
-        text={cv.fullname}
         onChange={(value) => updatePartial({ fullname: value })}
-      />
+      >
+        {cv.fullname}
+      </Text>
     </div>
   );
 };

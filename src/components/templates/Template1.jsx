@@ -5,13 +5,11 @@ import ExperiencesBlocks from "../experiences/ExperiencesBlock";
 import { useCV } from "../../CVContext";
 import Template1Header from "./Template1Header";
 import Icon from "../Icon";
+import useStyles from "../hooks/useStyles";
 
 const Template1 = () => {
-  const {
-    cv,
-    updateMain,
-    settings: { resume_title_color },
-  } = useCV();
+  const { cv, updateMain } = useCV();
+  const styles = useStyles();
 
   const main = useMemo(() => cv.main, [cv.main]);
 
@@ -36,11 +34,9 @@ const Template1 = () => {
           </p>
         </SideContainer>
       </SideBar>
-      <Main>
+      <Main $styles={styles}>
         <Template1Header />
-        <CVName style={{ color: `${resume_title_color}` }}>
-          Frontend web developer
-        </CVName>
+        <CVName className="resume-title">Frontend web developer</CVName>
         <div style={{ width: "100%" }}>
           {" "}
           <DragBlocks main items={blocks} onReorder={setBlocks} />
@@ -51,6 +47,17 @@ const Template1 = () => {
 };
 
 export default Template1;
+
+const Main = styled.div`
+  padding: 55px 36px;
+  width: 100%;
+  .title-text {
+    color: ${({ $styles }) => $styles.titleColor};
+  }
+  .resume-title {
+    color: ${({ $styles }) => $styles.resumeTitleColor};
+  }
+`;
 
 const Root = styled.div`
   font-size: 12px;
@@ -71,30 +78,18 @@ const SideContainer = styled.div`
   padding: 55px 36px;
 `;
 
-const Main = styled.div`
-  padding: 55px 36px;
-  width: 100%;
-  .title-text {
-    color: red;
-  }
-`;
-
 const CVName = styled.div`
   font-weight: bold;
   line-height: 17px;
   font-size: 19px;
 `;
 
-const getMainComponent = (type, data, groupId) => {
+const getMainComponent = (type, data, title, groupId) => {
   switch (type) {
     case "experiences":
-      return (
-        <ExperiencesBlocks groupId={groupId} title="Experiences" data={data} />
-      );
+      return <ExperiencesBlocks groupId={groupId} title={title} data={data} />;
     case "education":
-      return (
-        <ExperiencesBlocks groupId={groupId} title="Education" data={data} />
-      );
+      return <ExperiencesBlocks groupId={groupId} title={title} data={data} />;
     case "skills":
       return (
         <div>
@@ -112,7 +107,8 @@ const handleBlocksMain = (main) => {
   const arr = main.map((item) => {
     return {
       id: item.id,
-      content: getMainComponent(item.type, item.data, item.id),
+      title: item.title,
+      content: getMainComponent(item.type, item.data, item.title, item.id),
     };
   });
 

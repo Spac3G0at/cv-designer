@@ -18,7 +18,13 @@ import styled from "styled-components";
 const DragBlocks = ({ items, main, onReorder }) => {
   const [isDragging, setIsDragging] = useState(false);
 
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 2,
+      },
+    })
+  );
 
   const handleDragEnd = (event) => {
     const { active, over } = event;

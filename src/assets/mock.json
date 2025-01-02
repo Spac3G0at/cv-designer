@@ -28,8 +28,9 @@
   ],
   "main": [
     {
-      "id": "experiences",
+      "id": "experiences_1",
       "type": "experiences",
+      "title": "Experiences",
       "data": [
         {
           "id": "exp1",
@@ -61,8 +62,9 @@
       ]
     },
     {
-      "id": "education",
+      "id": "education_1",
       "type": "education",
+      "title": "Education",
       "data": [
         {
           "id": "ed1",
@@ -87,6 +89,7 @@
     {
       "id": "softskills",
       "type": "skills",
+      "title": "Softskills",
       "data": [
         {
           "label": "Communication",

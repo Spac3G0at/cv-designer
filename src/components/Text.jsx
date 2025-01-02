@@ -3,9 +3,10 @@ import styled from "styled-components";
 const Text = ({
   element = "p",
   canEdit = true,
-  text,
+  children,
   style = {},
   onChange,
+  ...props
 }) => {
   const handleBlur = (e) => {
     onChange(e.target.innerText);
@@ -26,13 +27,14 @@ const Text = ({
         style={{
           ...style,
         }}
-        contentEditable={canEdit}
+        contentEditable={canEdit && Boolean(onChange)}
         suppressContentEditableWarning
         spellCheck="false" // Disable spell checking
         onBlur={handleBlur}
         onKeyDown={handleKeyDown} // Handle keydown event to check for Enter key
+        {...props}
       >
-        {text}
+        {children}
       </Tag>
     </Root>
   );

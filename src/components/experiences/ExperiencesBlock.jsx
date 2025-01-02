@@ -4,15 +4,16 @@ import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
 import { useCV } from "../../CVContext";
 import ExperienceModal from "./ExperienceModal";
+import Text from "../Text";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
   const {
     cv,
     updateMainGroup,
     addItemToMainGroup,
-    settings,
     setModal,
     closeModal,
+    updateMainGroupTitle,
   } = useCV();
 
   const group = useMemo(
@@ -43,9 +44,15 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     closeModal();
   };
 
+  const handleTitleChange = (value) => {
+    updateMainGroupTitle(value, groupId);
+  };
+
   return (
     <Root style={{ width: "100%", paddingTop: "30px" }}>
-      <Title style={{ color: settings.title_color }}>{title}</Title>
+      <Text onChange={handleTitleChange} className="title-text" element={Title}>
+        {title}
+      </Text>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
         <button onClick={openModal}>

@@ -1,15 +1,9 @@
 import styled from "styled-components";
-import { useCV } from "../../CVContext";
 import ColorPicker from "../ColorPicker";
+import useSettings from "../hooks/useSettings";
 
 const LayoutMenu = () => {
-  const { settings, updateSettings } = useCV();
-
-  console.log(settings);
-
-  const updateProperty = (property, value) => {
-    updateSettings({ [property]: value });
-  };
+  const { settings, update } = useSettings();
 
   return (
     <div>
@@ -17,7 +11,7 @@ const LayoutMenu = () => {
       <ItemGroup>
         <span>Name color</span>
         <ColorPicker
-          onChange={(color) => updateProperty("name_color", color)}
+          onChange={(color) => update("name_color", color)}
           baseColor={settings.name_color}
         />
       </ItemGroup>
@@ -25,7 +19,7 @@ const LayoutMenu = () => {
       <ItemGroup>
         <span>Resume title color</span>
         <ColorPicker
-          onChange={(color) => updateProperty("resume_title_color", color)}
+          onChange={(color) => update("resume_title_color", color)}
           baseColor={settings.resume_title_color}
         />
       </ItemGroup>
@@ -33,7 +27,7 @@ const LayoutMenu = () => {
       <ItemGroup>
         <span>Title color</span>
         <ColorPicker
-          onChange={(color) => updateProperty("title_color", color)}
+          onChange={(color) => update("title_color", color)}
           baseColor={settings.title_color}
         />
       </ItemGroup>
@@ -47,7 +41,8 @@ const LayoutMenu = () => {
             id="huey"
             name="drone"
             checked={settings.timeline}
-            onClick={() => updateProperty("timeline", true)}
+            readOnly
+            onClick={() => update("timeline", true)}
           />
           Yes
         </label>
@@ -58,7 +53,8 @@ const LayoutMenu = () => {
             id="dewey"
             name="drone"
             checked={!settings.timeline}
-            onClick={() => updateProperty("timeline", false)}
+            readOnly
+            onClick={() => update("timeline", false)}
           />
           No
         </label>

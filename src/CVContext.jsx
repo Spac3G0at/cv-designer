@@ -93,6 +93,20 @@ export const CVProvider = ({ children }) => {
     }
   };
 
+  const updateMainGroupTitle = (title, groupId) => {
+    const group = cv.main.find((el) => el.id === groupId);
+
+    const changed = group.title !== title;
+
+    if (!changed) return;
+
+    const updatedCV = {
+      ...cv,
+      main: cv.main.map((el) => (el.id === groupId ? { ...el, title } : el)),
+    };
+    update(updatedCV);
+  };
+
   const updateMainGroup = (blocks, groupId) => {
     const group = cv.main.find((el) => el.id === groupId).data;
 
@@ -131,6 +145,7 @@ export const CVProvider = ({ children }) => {
         removeFromMainGroup,
         addItemToMainGroup,
         updateMainGroup,
+        updateMainGroupTitle,
         updateMain,
         settings,
         updateSettings,
