@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import LayoutMenu from "./LayoutMenu";
 import TemplateMenu from "./TemplateMenu";
+import BlocksMenu from "./BlocksMenu";
 
 const ToolbarMenu = ({ open, menuType, toggleOpen }) => {
   return (
@@ -24,6 +25,8 @@ const Currentmenu = ({ menu }) => {
       return <LayoutMenu />;
     case "template":
       return <TemplateMenu />;
+    case "blocks":
+      return <BlocksMenu />;
     default:
       return null;
   }

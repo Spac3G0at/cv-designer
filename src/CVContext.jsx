@@ -17,6 +17,7 @@ export const CVProvider = ({ children }) => {
   const [future, setFuture] = useState([]);
   const [modal, setModal] = useState(null);
   const closeModal = () => setModal(null);
+  const [addingBlock, setAddingBlock] = useState(null);
 
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
   const settings = useMemo(() => cv.settings, [cv]);
@@ -135,6 +136,29 @@ export const CVProvider = ({ children }) => {
     }
   };
 
+  const addBlock = (group) => {
+    setAddingBlock(null);
+    const { type } = addingBlock;
+    const item = {
+      id: `${type}_${Date.now()}`,
+      type,
+      data: [],
+      title: `New ${type} block`,
+    };
+
+    const selectedGroup = cv[group];
+    update({ ...cv, [group]: [...selectedGroup, item] });
+  };
+
+  const removeMainGroup = (groupId) => {
+    const updatedCV = {
+      ...cv,
+      main: cv.main.filter((el) => el.id !== groupId),
+    };
+
+    update(updatedCV);
+  };
+
   return (
     <CVContext.Provider
       value={{
@@ -147,6 +171,7 @@ export const CVProvider = ({ children }) => {
         updateMainGroup,
         updateMainGroupTitle,
         updateMain,
+        removeMainGroup,
         settings,
         updateSettings,
         updatePartial,
@@ -155,6 +180,9 @@ export const CVProvider = ({ children }) => {
         modal,
         canRedo: future.length > 0,
         canUndo: stack.length > 1,
+        addingBlock,
+        setAddingBlock,
+        addBlock,
       }}
     >
       {children}

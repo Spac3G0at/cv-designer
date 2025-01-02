@@ -37,6 +37,7 @@ const Template1 = () => {
         <Template1Header />
 
         <Content>
+          <AddBlockSelector container={"main"} />
           <DragBlocks main items={blocks} onReorder={setBlocks} />
         </Content>
       </Main>
@@ -48,7 +49,7 @@ export default Template1;
 
 const Main = styled.div`
   padding: 30px 36px;
-  width: calc(100% - (36px * 2px));
+  width: 100%;
 `;
 
 const Root = styled.div`
@@ -59,6 +60,7 @@ const Root = styled.div`
 
 const Content = styled.div`
   width: 100%;
+  position: relative;
 `;
 
 const SideBar = styled.div`
@@ -98,3 +100,39 @@ const handleBlocksMain = (main) => {
 
   return arr;
 };
+
+const AddBlockSelector = ({ container }) => {
+  const { addingBlock, addBlock } = useCV();
+  const active = addingBlock?.canAdd.includes(container);
+  const handleAdd = () => {
+    addBlock(container);
+  };
+
+  return (
+    <SelectorRoot $active={active}>
+      <div>
+        <button onClick={handleAdd}>Ajouter ici</button>
+      </div>
+    </SelectorRoot>
+  );
+};
+
+const SelectorRoot = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  padding: 10px;
+  justify-content: center;
+  display: ${({ $active }) => ($active ? "flex" : "none")};
+  div {
+    margin-top: 20px;
+  }
+  button {
+    background: white;
+    color: black;
+  }
+`;

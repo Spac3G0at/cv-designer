@@ -14,6 +14,11 @@ const Toolbar = () => {
       icon: "fa-solid fa-paintbrush",
       label: "Layout",
     },
+    {
+      type: "blocks",
+      icon: "fa-solid fa-plus",
+      label: "Add a block",
+    },
   ];
 
   const [open, setOpen] = useState(false);

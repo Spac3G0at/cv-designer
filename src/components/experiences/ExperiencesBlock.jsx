@@ -14,10 +14,11 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     setModal,
     closeModal,
     updateMainGroupTitle,
+    removeMainGroup,
   } = useCV();
 
   const group = useMemo(
-    () => cv.main.find((el) => el.id === groupId).data,
+    () => cv.main.find((el) => el.id === groupId)?.data,
     [cv, groupId]
   );
 
@@ -48,6 +49,12 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     updateMainGroupTitle(value, groupId);
   };
 
+  const handleRemove = () => {
+    removeMainGroup(groupId);
+  };
+
+  if (!group) return null;
+
   return (
     <Root>
       <Text onChange={handleTitleChange} className="title-text" element={Title}>
@@ -55,6 +62,9 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
       </Text>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
+        <button onClick={handleRemove}>
+          <i className="fa-solid fa-trash-can"></i>
+        </button>
         <button onClick={openModal}>
           <i className="fa-solid fa-plus"></i> Ajouter
         </button>
@@ -113,7 +123,7 @@ const Root = styled.div`
 `;
 
 const handleBlocks = (data, groupId) => {
-  return data.map((experience, index) => ({
+  return data?.map((experience, index) => ({
     id: experience.id,
     content: (
       <ExperienceItem
