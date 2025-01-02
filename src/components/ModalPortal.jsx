@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Overlay = styled.div`
@@ -12,6 +13,14 @@ const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -40,6 +49,19 @@ const CloseButton = styled.button`
 `;
 
 const ModalPortal = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // Disable body scroll
+    } else {
+      document.body.style.overflow = ""; // Restore body scroll
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = ""; // Restore body scroll
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(

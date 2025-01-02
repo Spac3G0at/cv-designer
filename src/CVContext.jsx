@@ -18,8 +18,6 @@ export const CVProvider = ({ children }) => {
   const [modal, setModal] = useState(null);
   const closeModal = () => setModal(null);
 
-  console.log("render");
-
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
   const settings = useMemo(() => cv.settings, [cv]);
 
