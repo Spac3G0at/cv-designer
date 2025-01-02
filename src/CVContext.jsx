@@ -15,6 +15,10 @@ const data = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
 export const CVProvider = ({ children }) => {
   const [stack, setStack] = useState([data]);
   const [future, setFuture] = useState([]);
+  const [modal, setModal] = useState(null);
+  const closeModal = () => setModal(null);
+
+  console.log("render");
 
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
   const settings = useMemo(() => cv.settings, [cv]);
@@ -37,7 +41,6 @@ export const CVProvider = ({ children }) => {
 
   const updateSettings = (newSettings) => {
     const updatedCV = { ...cv, settings: { ...settings, ...newSettings } };
-    console.log(newSettings);
     update(updatedCV);
   };
 
@@ -134,6 +137,9 @@ export const CVProvider = ({ children }) => {
         settings,
         updateSettings,
         updatePartial,
+        setModal,
+        closeModal,
+        modal,
       }}
     >
       {children}

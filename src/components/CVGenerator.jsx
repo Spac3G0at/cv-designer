@@ -18,6 +18,7 @@ const Root = styled.div`
 `;
 
 const PDFContainer = styled.div`
+  user-select: none;
   width: 21cm;
   height: 29.7cm;
   background-color: white;

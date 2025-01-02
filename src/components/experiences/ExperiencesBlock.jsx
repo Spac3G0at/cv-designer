@@ -3,9 +3,17 @@ import DragBlocks from "../draggables/DragBlocks";
 import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
 import { useCV } from "../../CVContext";
+import ExperienceModal from "./ExperienceModal";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
-  const { cv, updateMainGroup, addItemToMainGroup, settings } = useCV();
+  const {
+    cv,
+    updateMainGroup,
+    addItemToMainGroup,
+    settings,
+    setModal,
+    closeModal,
+  } = useCV();
 
   const group = useMemo(
     () => cv.main.find((el) => el.id === groupId).data,
@@ -26,9 +34,13 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
-  const addItem = () => {
-    const item = generateMockItem();
+  const openModal = () => {
+    setModal(<ExperienceModal onAdd={handleAddItem} cancel={closeModal} />);
+  };
+
+  const handleAddItem = (item) => {
     addItemToMainGroup(item, groupId);
+    closeModal();
   };
 
   return (
@@ -36,7 +48,7 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
       <Title style={{ color: settings.title_color }}>{title}</Title>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
-        <button onClick={addItem}>
+        <button onClick={openModal}>
           <i className="fa-solid fa-plus"></i> Ajouter
         </button>
       </Actions>
@@ -99,17 +111,4 @@ const handleBlocks = (data, groupId) => {
       <ExperienceItem id={experience.id} data={experience} groupId={groupId} />
     ),
   }));
-};
-
-const generateMockItem = () => {
-  return {
-    id: `exp_${new Date().getTime()}`,
-    title: "Frontend Developer",
-    company: "ABC Company",
-    location: "New York, NY",
-    from: "2018",
-    to: "Present",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
-  };
 };

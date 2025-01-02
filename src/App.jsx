@@ -4,6 +4,7 @@ import CVGenerator from "./components/CVGenerator";
 import Navbar from "./components/Navbar";
 import { CVProvider } from "./CVContext";
 import Toolbar from "./components/Toolbar";
+import Modal from "./components/Modal";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <CVGenerator />
           </CVContainer>
         </Content>
+        <Modal />
       </CVProvider>
     </div>
   );
