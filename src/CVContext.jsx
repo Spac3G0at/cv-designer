@@ -139,10 +139,11 @@ export const CVProvider = ({ children }) => {
   const addBlock = (group) => {
     setAddingBlock(null);
     const { type } = addingBlock;
+
     const item = {
       id: `${type}_${Date.now()}`,
       type,
-      data: [],
+      data: mocksData[type],
       title: `New ${type} block`,
     };
 
@@ -194,4 +195,71 @@ export const CVProvider = ({ children }) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useCV = () => {
   return useContext(CVContext);
+};
+
+const mockExperienceData = [
+  {
+    id: "exp1",
+    title: "Experience 1",
+    company: "ABC Company",
+    location: "New York, NY",
+    from: "2024-12-15T23:00:00+00:00",
+    to: "2023-11-16T23:00:00+00:00",
+    description:
+      "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>",
+  },
+  {
+    id: "exp2",
+    title: "Experience 2",
+    company: "XYZ Company",
+    location: "Los Angeles, CA",
+    from: "2024-12-15T23:00:00+00:00",
+    to: "2023-11-16T23:00:00+00:00",
+    description:
+      "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>",
+  },
+];
+const mockEducationData = [
+  {
+    id: "ed1",
+    title: "Edcuation 1",
+    institution: "XYZ Institution",
+    location: "Los Angeles, CA",
+    from: "2024-12-15T23:00:00+00:00",
+    to: "2023-11-16T23:00:00+00:00",
+    description:
+      "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>",
+  },
+  {
+    id: "ed2",
+    title: "Education 2",
+    institution: "123 Institution",
+    location: "San Francisco, CA",
+    from: "2024-12-15T23:00:00+00:00",
+    to: "2023-11-16T23:00:00+00:00",
+    description:
+      "<p>Elaborer et piloter la mise en place du Système intégré SIRH (Paie, Talent, Recrutement, Succession, Mobilité, Revue de salaire, Formation) Constituer et être le garant du budget. Réaliser les appels d?offres Piloter les équipes d?intégrations</p>",
+  },
+];
+const mockSkillsData = [
+  {
+    id: "sk_1",
+    label: "Communication",
+    skills: ["Listening", "Speaking"],
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
+  },
+  {
+    id: "sk_2",
+    label: "Teamwork",
+    skills: ["Collaboration", "Leadership"],
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.",
+  },
+];
+
+const mocksData = {
+  experiences: mockExperienceData,
+  education: mockEducationData,
+  skills: mockSkillsData,
 };

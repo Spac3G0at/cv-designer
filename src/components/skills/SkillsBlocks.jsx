@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useCV } from "../../CVContext";
 
 import Text from "../Text";
+import ConfirmModal from "../ConfirmModal";
 
 const SkillsBlocks = ({ data, title, groupId }) => {
   const {
@@ -12,12 +13,13 @@ const SkillsBlocks = ({ data, title, groupId }) => {
     updateMainGroup,
     addItemToMainGroup,
     setModal,
+    removeMainGroup,
     closeModal,
     updateMainGroupTitle,
   } = useCV();
 
   const group = useMemo(
-    () => cv.main.find((el) => el.id === groupId).data,
+    () => cv.main.find((el) => el.id === groupId)?.data,
     [cv, groupId]
   );
 
@@ -48,6 +50,17 @@ const SkillsBlocks = ({ data, title, groupId }) => {
     updateMainGroupTitle(value, groupId);
   };
 
+  const handleRemove = () => {
+    setModal(
+      <ConfirmModal
+        confirm={() => removeMainGroup(groupId)}
+        text="Remove this block ?"
+      />
+    );
+  };
+
+  if (!group) return null;
+
   return (
     <Root>
       <Text onChange={handleTitleChange} className="title-text" element={Title}>
@@ -55,6 +68,9 @@ const SkillsBlocks = ({ data, title, groupId }) => {
       </Text>
       <DragBlocks items={blocks} onReorder={setBlocks} />
       <Actions>
+        <button onClick={handleRemove}>
+          <i className="fa-solid fa-trash-can"></i>
+        </button>
         <button onClick={openModal}>
           <i className="fa-solid fa-plus"></i> Ajouter
         </button>
@@ -113,7 +129,7 @@ const Root = styled.div`
 `;
 
 const handleBlocks = (data, groupId) => {
-  return data.map((skills, index) => ({
+  return data?.map((skills, index) => ({
     id: skills.id,
     content: <Item key={skills.id} skills={skills} />,
   }));

@@ -5,6 +5,7 @@ import ExperienceItem from "./ExperienceItem";
 import { useCV } from "../../CVContext";
 import ExperienceModal from "./ExperienceModal";
 import Text from "../Text";
+import ConfirmModal from "../ConfirmModal";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
   const {
@@ -50,7 +51,12 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
   };
 
   const handleRemove = () => {
-    removeMainGroup(groupId);
+    setModal(
+      <ConfirmModal
+        confirm={() => removeMainGroup(groupId)}
+        text="Remove this block ?"
+      />
+    );
   };
 
   if (!group) return null;

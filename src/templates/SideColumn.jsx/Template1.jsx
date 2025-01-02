@@ -128,6 +128,7 @@ const SelectorRoot = styled.span`
   padding: 10px;
   justify-content: center;
   display: ${({ $active }) => ($active ? "flex" : "none")};
+  min-height: 70px;
   div {
     margin-top: 20px;
   }
