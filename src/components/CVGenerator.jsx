@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Template1 from "../templates/SideColumn.jsx/Template1";
 import { useCV } from "../CVContext";
 import TemplateTopInfos from "../templates/TopInfos/TemplateTopInfos";
+import "../css/generator.css";
 
 const CVGenerator = () => {
   return (

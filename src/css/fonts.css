@@ -5,5 +5,12 @@
   font-family: "Font Awesome 6 Free";
   font-style: normal;
   font-weight: 900;
-  src: url(../assets/fa-solid-900.ttf);
+  src: url("../assets/fa-solid-900.ttf");
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../assets/fa-solid-900.ttf");
 }

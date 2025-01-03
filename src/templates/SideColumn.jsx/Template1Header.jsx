@@ -10,11 +10,6 @@ const Template1Header = () => {
       <Text
         element="h1"
         className="name"
-        style={{
-          fontSize: "24px",
-          fontWeight: "bold",
-          lineHeight: "28px",
-        }}
         onChange={(value) => updatePartial({ fullname: value })}
       >
         {cv.fullname}
@@ -35,6 +30,7 @@ const CVName = styled.div`
   font-size: 19px;
 `;
 
-const Description = styled.div`
+const Description = styled.p`
   margin-top: 10px;
+  margin-bottom: 0;
 `;

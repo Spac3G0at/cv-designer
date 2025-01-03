@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useMemo } from "react";
+import { createContext, useState, useContext, useMemo, useEffect } from "react";
 import mock from "./assets/mock.json";
 import alignArraysById from "./utils/alignArraysById";
 
@@ -21,6 +21,17 @@ export const CVProvider = ({ children }) => {
 
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
   const settings = useMemo(() => cv.settings, [cv]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--resume-scale-factor",
+      settings?.resume_scale_factor ?? 1
+    );
+    document.documentElement.style.setProperty(
+      "--resume-title-scale-factor",
+      settings?.resume_title_scale_factor ?? 1
+    );
+  }, [settings]);
 
   const update = (newData) => {
     // Compare current CV data with the new data

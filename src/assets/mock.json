@@ -132,6 +132,8 @@
     "title_color": "#2babe2",
     "name_color": "#000000",
     "timeline": true,
-    "template": "default"
+    "template": "default",
+    "resume_scale_factor": 1,
+    "resume_title_scale_factor": 1
   }
 }

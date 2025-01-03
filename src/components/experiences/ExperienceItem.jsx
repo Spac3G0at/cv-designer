@@ -66,7 +66,6 @@ const Actions = styled.div`
   top: 10px;
   right: 10px;
   color: black;
-
   opacity: 0; /* Hidden by default */
   visibility: hidden; /* Prevent interaction when hidden */
   transition: all 0.2s ease;
@@ -128,7 +127,7 @@ const Content = styled.div`
   padding-bottom: ${({ $last }) => ($last ? "5px" : "10px")};
 `;
 
-const Description = styled.div`
-  font-size: 12px;
+const Description = styled.p`
+  font-size: calc(1 * 0.75rem);
   color: #444444;
 `;

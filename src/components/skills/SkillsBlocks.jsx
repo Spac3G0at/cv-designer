@@ -55,7 +55,12 @@ const SkillsBlocks = ({ data, title, groupId }) => {
 
   return (
     <Root>
-      <Text onChange={handleTitleChange} className="title-text" element={Title}>
+      <Text
+        onChange={handleTitleChange}
+        className="title-text"
+        style={{ marginBottom: "10px" }}
+        element={"h4"}
+      >
         {title}
       </Text>
       <DragBlocks items={blocks} onReorder={setBlocks} />
@@ -72,11 +77,6 @@ const SkillsBlocks = ({ data, title, groupId }) => {
 };
 
 export default SkillsBlocks;
-
-const Title = styled.p`
-  font-weight: bold;
-  margin-bottom: 5px;
-`;
 
 const Actions = styled.div`
   background: #1a1a1a;
