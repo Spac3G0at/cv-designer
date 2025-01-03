@@ -7,12 +7,23 @@ const LayoutMenu = () => {
   const { settings, update } = useSettings();
 
   const [size, setSize] = useState(settings.resume_scale_factor);
+  const [titleSize, setTitleSize] = useState(
+    settings.resume_title_scale_factor
+  );
   const handleSize = (e) => {
     setSize(e.target.value);
   };
 
   const handleFactor = () => {
     update("resume_scale_factor", size);
+  };
+
+  const handleTitleFactor = () => {
+    update("resume_title_scale_factor", titleSize);
+  };
+
+  const handleTitleSize = (e) => {
+    setTitleSize(e.target.value);
   };
 
   return (
@@ -84,6 +95,22 @@ const LayoutMenu = () => {
           value={size}
           onMouseUp={handleFactor}
           onChange={handleSize}
+        />
+      </ItemGroup>
+      <ItemGroup>
+        <span>Title size</span>
+
+        <input
+          type="range"
+          id="volume"
+          name="volume"
+          min="0.5"
+          max="1.5"
+          step="0.1"
+          style={{ padding: 0 }}
+          value={titleSize}
+          onMouseUp={handleTitleFactor}
+          onChange={handleTitleSize}
         />
       </ItemGroup>
     </div>
