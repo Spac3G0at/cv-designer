@@ -6,11 +6,18 @@ import { CVProvider } from "./CVContext";
 import Toolbar from "./components/Toolbar";
 import Modal from "./components/Modal";
 import ThemeProvider from "./css/ThemeProvider";
+import mock from "./assets/mock.json";
+
+if (localStorage.getItem("cv") === null) {
+  localStorage.setItem("cv", JSON.stringify(mock));
+}
+
+const data = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
 
 function App() {
   return (
     <Root>
-      <CVProvider>
+      <CVProvider editable data={data}>
         <ThemeProvider>
           <Navbar />
           <Content>

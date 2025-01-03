@@ -14,8 +14,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import styled from "styled-components";
+import { useCV } from "../../CVContext";
 
 const DragBlocks = ({ items, main, onReorder }) => {
+  const { editable } = useCV();
+
   const [isDragging, setIsDragging] = useState(false);
 
   const sensors = useSensors(
@@ -42,26 +45,48 @@ const DragBlocks = ({ items, main, onReorder }) => {
   };
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-      onDragStart={handleDragStart}
-    >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+    <>
+      {editable ? (
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+          onDragStart={handleDragStart}
+        >
+          <SortableContext items={items} strategy={verticalListSortingStrategy}>
+            <Content $shadow={isDragging && main}>
+              {items.map((item) => (
+                <SortableItem
+                  editable={editable}
+                  key={item.id}
+                  id={item.id}
+                  height={item.height}
+                >
+                  {item.content}
+                </SortableItem>
+              ))}
+            </Content>
+          </SortableContext>
+        </DndContext>
+      ) : (
         <Content $shadow={isDragging && main}>
           {items.map((item) => (
-            <SortableItem key={item.id} id={item.id} height={item.height}>
+            <SortableItem
+              editable={editable}
+              key={item.id}
+              id={item.id}
+              height={item.height}
+            >
               {item.content}
             </SortableItem>
           ))}
         </Content>
-      </SortableContext>
-    </DndContext>
+      )}
+    </>
   );
 };
 
-const SortableItem = ({ id, height, children }) => {
+const SortableItem = ({ id, height, children, editable }) => {
   const {
     attributes,
     listeners,
@@ -82,7 +107,13 @@ const SortableItem = ({ id, height, children }) => {
   };
 
   return (
-    <ItemRoot ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <ItemRoot
+      $editable={editable}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       {/* Prevent drag propagation on button clicks */}
       <div
         onPointerDown={(e) => {
@@ -107,9 +138,10 @@ const ItemRoot = styled.div`
   font-size: 16px;
 
   touch-action: none;
-  cursor: grab;
+  cursor: ${({ $editable }) => ($editable ? "grab" : "auto")};
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: ${({ $editable }) =>
+      $editable ? "rgba(0, 0, 0, 0.05)" : "none"};
   }
 `;
 

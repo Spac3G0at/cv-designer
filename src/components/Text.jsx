@@ -1,12 +1,7 @@
-const Text = ({
-  element = "p",
-  canEdit = true,
-  children,
-  style = {},
-  onChange,
-  ...props
-}) => {
-  const editable = canEdit && Boolean(onChange);
+import { useCV } from "../CVContext";
+
+const Text = ({ element = "p", children, style = {}, onChange, ...props }) => {
+  const { editable } = useCV();
 
   const handleBlur = (e) => {
     const value = e.target.innerText.trim();
@@ -25,7 +20,7 @@ const Text = ({
   return (
     <Tag
       style={{
-        cursor: editable ? "pointer" : "default",
+        cursor: editable ? "pointer" : "auto",
         display: "inline-block",
         ...style,
       }}

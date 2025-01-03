@@ -1,18 +1,12 @@
 import { createContext, useState, useContext, useMemo, useEffect } from "react";
-import mock from "./assets/mock.json";
+
 import alignArraysById from "./utils/alignArraysById";
 
 // Create the context
 const CVContext = createContext();
 
-if (localStorage.getItem("cv") === null) {
-  localStorage.setItem("cv", JSON.stringify(mock));
-}
-
-const data = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
-
 // Create a provider component
-export const CVProvider = ({ children }) => {
+export const CVProvider = ({ children, editable, data }) => {
   const [stack, setStack] = useState([data]);
   const [future, setFuture] = useState([]);
   const [modal, setModal] = useState(null);
@@ -34,6 +28,7 @@ export const CVProvider = ({ children }) => {
   }, [settings.resume_scale_factor, settings.resume_title_scale_factor]);
 
   const update = (newData) => {
+    if (!editable) return;
     // Compare current CV data with the new data
     if (JSON.stringify(cv) === JSON.stringify(newData)) {
       return;
@@ -195,6 +190,7 @@ export const CVProvider = ({ children }) => {
         addingBlock,
         setAddingBlock,
         addBlock,
+        editable,
       }}
     >
       {children}

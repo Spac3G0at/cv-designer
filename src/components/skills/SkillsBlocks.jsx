@@ -15,6 +15,7 @@ const SkillsBlocks = ({ data, title, groupId }) => {
     removeMainGroup,
     closeModal,
     updateMainGroupTitle,
+    editable,
   } = useCV();
 
   // Initialize blocks state
@@ -64,7 +65,7 @@ const SkillsBlocks = ({ data, title, groupId }) => {
         {title}
       </Text>
       <DragBlocks items={blocks} onReorder={setBlocks} />
-      <Actions>
+      <Actions $editable={editable}>
         <button onClick={handleRemove}>
           <i className="fa-solid fa-trash-can"></i>
         </button>
@@ -84,7 +85,7 @@ const Actions = styled.div`
   top: 15px;
   left: 10px;
   height: 26px;
-  display: flex;
+  display: ${({ $editable }) => ($editable ? "flex" : "none")};
   align-items: center;
 
   font-size: 12px;

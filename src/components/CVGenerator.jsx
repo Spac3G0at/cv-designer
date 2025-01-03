@@ -5,9 +5,11 @@ import TemplateTopInfos from "../templates/TopInfos/TemplateTopInfos";
 import "../css/generator.css";
 
 const CVGenerator = () => {
+  const { editable } = useCV();
+
   return (
     <Root>
-      <PDFContainer id="cv">
+      <PDFContainer $editable={editable} id="cv">
         <Template />
       </PDFContainer>
     </Root>
@@ -21,7 +23,7 @@ const Root = styled.div`
 `;
 
 const PDFContainer = styled.div`
-  user-select: none;
+  user-select: ${({ $editable }) => ($editable ? "none" : "auto")};
   width: 21cm;
   height: 29.7cm;
   background-color: white;

@@ -9,6 +9,7 @@ const ExperienceItem = ({ data, groupId, last }) => {
       settings: { timeline, resume_scale_factor },
     },
     setModal,
+    editable,
   } = useCV();
 
   const handleRemove = () => {
@@ -51,7 +52,7 @@ const ExperienceItem = ({ data, groupId, last }) => {
 
         <Description dangerouslySetInnerHTML={{ __html: data.description }} />
       </Content>
-      <Actions>
+      <Actions $editable={editable}>
         <button onClick={handleRemove}>
           <i className="fa-solid fa-trash"></i>
         </button>
@@ -75,6 +76,7 @@ const Actions = styled.div`
   opacity: 0; /* Hidden by default */
   visibility: hidden; /* Prevent interaction when hidden */
   transition: all 0.2s ease;
+  display: ${({ $editable }) => ($editable ? "block" : "none")};
   button {
     color: black;
     font-size: 12px;
