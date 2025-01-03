@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import { CVProvider } from "./CVContext";
 import Toolbar from "./components/Toolbar";
 import Modal from "./components/Modal";
-import ThemeProvider from "./assets/ThemeProvider";
+import ThemeProvider from "./css/ThemeProvider";
 
 function App() {
   return (

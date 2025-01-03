@@ -1,6 +1,8 @@
 import jsPDF from "jspdf";
 import font from "../assets/fa-solid-900.ttf";
 import styled from "styled-components";
+import { LatoFontFaces } from "../css/Lato/LatoFontFaces";
+import { DynaPuffFaces } from "../css/DynaPuff/DynaPuffFaces";
 
 const DownloadButton = () => {
   const handleDownloadPdf = async () => {
@@ -66,6 +68,7 @@ const DownloadButton = () => {
           ],
         },
         ...LatoFontFaces,
+        ...DynaPuffFaces,
       ],
     });
   };
@@ -93,126 +96,3 @@ const Button = styled.button`
     background: rgb(220, 37, 83);
   }
 `;
-
-const LatoFontFaces = [
-  {
-    family: "Lato",
-    style: "normal",
-    weight: "100",
-    src: [
-      {
-        url: "public/Lato/Lato-Thin.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "normal",
-    weight: "300",
-    src: [
-      {
-        url: "public/Lato/Lato-Light.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "normal",
-    weight: "400",
-    src: [
-      {
-        url: "public/Lato/Lato-Regular.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "normal",
-    weight: "700",
-    src: [
-      {
-        url: "public/Lato/Lato-Bold.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "normal",
-    weight: "900",
-    src: [
-      {
-        url: "public/Lato/Lato-Black.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "italic",
-    weight: "100",
-    src: [
-      {
-        url: "public/Lato/Lato-ThinItalic.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "italic",
-    weight: "300",
-    src: [
-      {
-        url: "public/Lato/Lato-LightItalic.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "italic",
-    weight: "400",
-    src: [
-      {
-        url: "public/Lato/Lato-Italic.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "italic",
-    weight: "700",
-    src: [
-      {
-        url: "public/Lato/Lato-BoldItalic.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-  {
-    family: "Lato",
-    style: "italic",
-    weight: "900",
-    src: [
-      {
-        url: "public/Lato/Lato-BlackItalic.ttf",
-        format: "truetype",
-        subset: true,
-      },
-    ],
-  },
-];
