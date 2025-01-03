@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCV } from "../CVContext";
 import DownloadButton from "./DownloadButton";
 import mockCV from "../assets/mock";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const { undo, redo, canRedo, canUndo } = useCV();
@@ -9,7 +10,7 @@ const Navbar = () => {
   return (
     <Root>
       <nav>
-        <div>Resume creator</div>
+        <Link to="/">Resume creator</Link>
         <RedoUndoBtnGroup>
           <button disabled={!canUndo} onClick={undo}>
             <i className="fa-solid fa-arrow-rotate-left"></i>
