@@ -29,6 +29,7 @@ const ExperienceItem = ({ data, groupId, last }) => {
 
   const from = formatDate(data.from);
   const to = formatDate(data.to);
+
   const dateString =
     from === to ? from : `${from}${data.to ? ` - ${to}` : " - Present"}`;
 

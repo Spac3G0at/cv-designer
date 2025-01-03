@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import DragBlocks from "../draggables/DragBlocks";
 import styled from "styled-components";
 import ExperienceItem from "./ExperienceItem";
@@ -9,7 +9,6 @@ import ConfirmModal from "../ConfirmModal";
 
 const ExperiencesBlocks = ({ data, title, groupId }) => {
   const {
-    cv,
     updateMainGroup,
     addItemToMainGroup,
     setModal,
@@ -18,18 +17,13 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
     removeMainGroup,
   } = useCV();
 
-  const group = useMemo(
-    () => cv.main.find((el) => el.id === groupId)?.data,
-    [cv, groupId]
-  );
-
   // Initialize blocks state
   const [blocks, setBlocks] = useState(handleBlocks(data, groupId));
 
   // Update blocks when group data changes
   useEffect(() => {
-    setBlocks(handleBlocks(group, groupId));
-  }, [group, groupId]);
+    setBlocks(handleBlocks(data, groupId));
+  }, [data, groupId]);
 
   // Update group data when blocks change
   useEffect(() => {
@@ -58,8 +52,6 @@ const ExperiencesBlocks = ({ data, title, groupId }) => {
       />
     );
   };
-
-  if (!group) return null;
 
   return (
     <Root>
