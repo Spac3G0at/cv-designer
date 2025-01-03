@@ -15,13 +15,13 @@ if (localStorage.getItem("cv") === null) {
 
 const cvData = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
 
-const CVEditor = () => {
+const CVEditor = ({ editable = true }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const init = async () => {
     setLoading(true);
-    let res = await new Promise((res) => setTimeout(() => res(cvData), 1000));
+    let res = await new Promise((res) => setTimeout(() => res(cvData), 500));
 
     console.log("res", res);
     setData(res);
@@ -35,18 +35,18 @@ const CVEditor = () => {
   if (loading) return <Loader />;
 
   return (
-    <CVProvider editable={true} data={data}>
+    <CVProvider editable={editable} data={data}>
       <ThemeProvider>
-        <Root>
-          <Navbar />
+        <Root $editable={editable}>
+          {editable && <Navbar />}
           <Content>
-            <Toolbar />
+            {editable && <Toolbar />}
             <CVContainer>
               <CVGenerator />
             </CVContainer>
           </Content>
         </Root>
-        <Modal />
+        {editable && <Modal />}
       </ThemeProvider>
     </CVProvider>
   );
@@ -55,7 +55,7 @@ const CVEditor = () => {
 export default CVEditor;
 
 const Root = styled.div`
-  min-height: 100vh;
+  min-height: ${({ $editable }) => ($editable ? "100vh" : "auto")};
 `;
 
 const Content = styled.div`

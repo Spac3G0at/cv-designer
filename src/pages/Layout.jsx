@@ -20,6 +20,7 @@ const Root = styled.div`
 
 const padding = 24;
 const Main = styled.main`
+  position: relative;
   height: calc(100vh - ${padding * 2}px);
   padding: ${padding}px 32px;
   width: 100%;
@@ -32,7 +33,7 @@ const Side = () => {
       <p>Resume creator</p>
       <Nav>
         <Link to="/dashboard">Home</Link>
-        <Link to="/cv-editor">CV Editor</Link>
+        <Link to="/cv-editor">Editor</Link>
       </Nav>
       <Footer>
         <LogoutButton>Logout</LogoutButton>

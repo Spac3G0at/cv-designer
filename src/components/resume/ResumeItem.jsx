@@ -1,64 +1,13 @@
-import styled from "styled-components";
-import Card from "../Card";
 import { Link } from "react-router";
+import styled from "styled-components";
 
-const ResumeCard = () => {
-  const resumes = [
-    {
-      name: "Resume 1",
-      id: 1,
-      thumb: "https://placehold.co/65x91",
-    },
-  ];
-
-  return (
-    <Card>
-      <Header>
-        <h3>My resumes</h3>
-        <div>
-          <Link to="/cv-editor">
-            <button>NEW RESUME</button>
-          </Link>
-        </div>
-      </Header>
-
-      <div>
-        {resumes.map((resume) => (
-          <ResumeItem key={resume.id} resume={resume} />
-        ))}
-      </div>
-
-      <Footer>
-        <Link to="/resumes">See all</Link>
-      </Footer>
-    </Card>
-  );
-};
-
-export default ResumeCard;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  button {
-    background: #ed2553;
-    font-size: 14px;
-  }
-  h3 {
-    margin: 0;
-  }
-`;
-
-const Footer = styled.div`
-  text-align: center;
-  margin-top: 16px;
-`;
-
-const ResumeItem = ({ resume }) => {
+const ResumeItem = ({ resume, large }) => {
   return (
     <ResumeItemRoot>
-      <img src={resume.thumb} alt={resume.name} />
+      <img
+        src={`https://placehold.co/${large ? 150 : 65}x${large ? 210 : 91}`}
+        alt={resume.name}
+      />
       <Infos>
         <Link to="/cv-editor">Resume 1</Link>
         <small>Updated 1 hour ago</small>
@@ -75,6 +24,8 @@ const ResumeItem = ({ resume }) => {
     </ResumeItemRoot>
   );
 };
+
+export default ResumeItem;
 
 const ResumeItemRoot = styled.div`
   display: flex;

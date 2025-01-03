@@ -1,12 +1,9 @@
-import { Link, useLoaderData } from "react-router";
-import { CVProvider } from "../CVContext";
-import ThemeProvider from "../css/ThemeProvider";
-import CVGenerator from "../components/CVGenerator";
+import { Link } from "react-router";
 import styled from "styled-components";
 import DownloadButton from "../components/DownloadButton";
+import CVEditor from "./CVEditor";
 
 const ResumeViewPage = () => {
-  const data = useLoaderData();
   return (
     <>
       <Link to="/">
@@ -15,41 +12,12 @@ const ResumeViewPage = () => {
       <ButtonFloat>
         <DownloadButton />
       </ButtonFloat>
-      <CVProvider editable={false} data={data}>
-        <ThemeProvider>
-          <Root>
-            <Content>
-              <CVContainer>
-                <CVGenerator />
-              </CVContainer>
-            </Content>
-          </Root>
-        </ThemeProvider>
-      </CVProvider>
+      <CVEditor editable={false} />
     </>
   );
 };
 
 export default ResumeViewPage;
-
-const Root = styled.div`
-  min-height: 100vh;
-`;
-
-const Content = styled.div`
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-`;
-
-const CVContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  flex: 1 1 0%;
-  justify-content: flex-end;
-  padding-top: 1rem;
-  padding-left: 0.25rem;
-`;
 
 const ButtonFloat = styled.div`
   position: fixed;
