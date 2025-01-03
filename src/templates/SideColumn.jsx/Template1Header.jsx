@@ -20,7 +20,9 @@ const Template1Header = () => {
         {cv.fullname}
       </Text>
 
-      <CVName className="resume-title">Frontend web developer</CVName>
+      <CVName className="resume-title">{cv.title}</CVName>
+
+      <Description dangerouslySetInnerHTML={{ __html: cv.description }} />
     </div>
   );
 };
@@ -31,4 +33,8 @@ const CVName = styled.div`
   font-weight: bold;
   line-height: 17px;
   font-size: 19px;
+`;
+
+const Description = styled.div`
+  margin-top: 10px;
 `;
