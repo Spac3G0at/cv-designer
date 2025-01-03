@@ -17,7 +17,7 @@ const data = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
 function App() {
   return (
     <Root>
-      <CVProvider editable data={data}>
+      <CVProvider editable={true} data={data}>
         <ThemeProvider>
           <Navbar />
           <Content>

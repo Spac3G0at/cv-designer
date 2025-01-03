@@ -44,6 +44,21 @@ const DragBlocks = ({ items, main, onReorder }) => {
     setIsDragging(true);
   };
 
+  const content = (
+    <Content $shadow={isDragging && main}>
+      {items.map((item) => (
+        <SortableItem
+          editable={editable}
+          key={item.id}
+          id={item.id}
+          height={item.height}
+        >
+          {item.content}
+        </SortableItem>
+      ))}
+    </Content>
+  );
+
   return (
     <>
       {editable ? (
@@ -54,33 +69,11 @@ const DragBlocks = ({ items, main, onReorder }) => {
           onDragStart={handleDragStart}
         >
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            <Content $shadow={isDragging && main}>
-              {items.map((item) => (
-                <SortableItem
-                  editable={editable}
-                  key={item.id}
-                  id={item.id}
-                  height={item.height}
-                >
-                  {item.content}
-                </SortableItem>
-              ))}
-            </Content>
+            {content}
           </SortableContext>
         </DndContext>
       ) : (
-        <Content $shadow={isDragging && main}>
-          {items.map((item) => (
-            <SortableItem
-              editable={editable}
-              key={item.id}
-              id={item.id}
-              height={item.height}
-            >
-              {item.content}
-            </SortableItem>
-          ))}
-        </Content>
+        <>{content}</>
       )}
     </>
   );
