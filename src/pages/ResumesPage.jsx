@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PageLoader from "./PageLoader";
 import ResumeItem from "../components/resume/ResumeItem";
 import Card from "../components/Card";
+import styled from "styled-components";
 
 const mock = [
   {
@@ -32,13 +33,20 @@ const ResumesPage = () => {
   return (
     <div>
       {loading && <PageLoader />}
-      {resumes.map((resume) => (
-        <Card key={resume.id}>
-          <ResumeItem resume={resume} large />
-        </Card>
-      ))}
+      <Content>
+        {resumes.map((resume) => (
+          <Card key={resume.id}>
+            <ResumeItem resume={resume} large />
+          </Card>
+        ))}
+      </Content>
     </div>
   );
 };
 
 export default ResumesPage;
+
+const Content = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+`;
