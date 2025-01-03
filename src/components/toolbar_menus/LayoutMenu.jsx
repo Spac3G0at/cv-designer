@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ColorPicker from "../ColorPicker";
 import useSettings from "../hooks/useSettings";
 import { useState } from "react";
+import FontSelector from "./layout/FontSelector";
 
 const LayoutMenu = () => {
   const { settings, update } = useSettings();
@@ -112,6 +113,11 @@ const LayoutMenu = () => {
           onMouseUp={handleTitleFactor}
           onChange={handleTitleSize}
         />
+      </ItemGroup>
+
+      <ItemGroup>
+        <span>Font</span>
+        <FontSelector />
       </ItemGroup>
     </div>
   );

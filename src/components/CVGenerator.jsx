@@ -5,11 +5,14 @@ import TemplateTopInfos from "../templates/TopInfos/TemplateTopInfos";
 import "../css/generator.css";
 
 const CVGenerator = () => {
-  const { editable } = useCV();
+  const {
+    editable,
+    settings: { font },
+  } = useCV();
 
   return (
     <Root>
-      <PDFContainer $editable={editable} id="cv">
+      <PDFContainer $editable={editable} $font={font} id="cv">
         <Template />
       </PDFContainer>
     </Root>
@@ -30,7 +33,7 @@ const PDFContainer = styled.div`
   margin: 0 auto;
   color: black;
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  font-family: ${({ $font }) => $font}, sans-serif;
   overflow: hidden;
   /* box-shadow: 0 0 10px rgba(245, 245, 245, 0.1); */
 `;
