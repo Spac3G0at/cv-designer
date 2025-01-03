@@ -6,7 +6,7 @@ const ExperienceItem = ({ data, groupId, last }) => {
   const {
     removeFromMainGroup,
     cv: {
-      settings: { timeline },
+      settings: { timeline, resume_scale_factor },
     },
     setModal,
   } = useCV();
@@ -41,12 +41,14 @@ const ExperienceItem = ({ data, groupId, last }) => {
         </Line>
       )}
       <Content $last={last}>
-        <strong>{data.title}</strong>
-        <div>
+        <Title $f={resume_scale_factor}>{data.title}</Title>
+
+        <p>
           <Infos>{dateString}</Infos>{" "}
-          <small className="company-label">{data.company}</small>{" "}
+          <span className="company-label">{data.company}</span>{" "}
           <Infos>{data.location}</Infos>
-        </div>
+        </p>
+
         <Description dangerouslySetInnerHTML={{ __html: data.description }} />
       </Content>
       <Actions>
@@ -59,6 +61,10 @@ const ExperienceItem = ({ data, groupId, last }) => {
 };
 
 export default ExperienceItem;
+
+const Title = styled.strong`
+  font-size: ${({ $f }) => `${14 * $f}px`};
+`;
 
 const Actions = styled.div`
   background: white;
@@ -116,7 +122,7 @@ const Line = styled.div`
   }
 `;
 
-const Infos = styled.small`
+const Infos = styled.span`
   color: #777777;
   &:last-of-type {
     color: #444444;

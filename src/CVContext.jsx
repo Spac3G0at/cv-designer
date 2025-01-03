@@ -31,7 +31,7 @@ export const CVProvider = ({ children }) => {
       "--resume-title-scale-factor",
       settings?.resume_title_scale_factor ?? 1
     );
-  }, [settings]);
+  }, [settings.resume_scale_factor, settings.resume_title_scale_factor]);
 
   const update = (newData) => {
     // Compare current CV data with the new data

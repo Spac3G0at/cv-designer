@@ -10,7 +10,6 @@ const Text = ({
 
   const handleBlur = (e) => {
     const value = e.target.innerText.trim();
-    console.log("VALUE", value);
     onChange(value.length > 0 ? value : "no content");
   };
 
