@@ -1,7 +1,11 @@
+import ResumeCard from "../components/dashboard/ResumeCard";
+
 const Homepage = () => {
   return (
     <div>
-      <p>Home</p>
+      <p>Hello 👋</p>
+
+      <ResumeCard />
     </div>
   );
 };
