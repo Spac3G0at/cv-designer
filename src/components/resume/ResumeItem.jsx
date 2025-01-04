@@ -44,6 +44,7 @@ const ButtonsGroup = styled.div`
   display: flex;
   font-size: 14px;
   margin-top: 10px;
+  flex-wrap: wrap;
   a {
     margin-right: 8px;
     &:first-of-type {

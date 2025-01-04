@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Template1 from "../templates/SideColumn.jsx/Template1";
 import { useCV } from "../CVContext";
@@ -10,8 +11,53 @@ const CVGenerator = () => {
     settings: { font },
   } = useCV();
 
+  const rootRef = useRef(null);
+  const [scale, setScale] = useState(1);
+  const [margins, setMargins] = useState({ marginLeft: 0, marginRight: 0 });
+
+  useEffect(() => {
+    function handleResize() {
+      if (!rootRef.current) return;
+
+      // Actual rendered width of <Root>, including its padding
+      const rootWidth = rootRef.current.offsetWidth;
+      // Screen (viewport) width
+      const screenWidth = document.documentElement.clientWidth;
+
+      let newScale = 1;
+
+      if (screenWidth > 962) {
+        setScale(1);
+        setMargins({ marginLeft: 0, marginRight: 0 });
+        return;
+      }
+
+      if (rootWidth > screenWidth) {
+        // Scale so <Root> fits exactly the viewport width
+        newScale = screenWidth / rootWidth;
+      }
+
+      const calculatedMargins = screenWidth - rootWidth;
+
+      const newMargins = {
+        marginLeft: calculatedMargins,
+        marginRight: calculatedMargins,
+      };
+      setMargins(newMargins);
+      setScale(newScale);
+    }
+
+    window.addEventListener("resize", handleResize);
+    // Run once on component mount
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Root>
+    <Root ref={rootRef} $scale={scale} $margins={margins} id="cv-ctn">
       <PDFContainer $editable={editable} $font={font} id="cv">
         <Template />
       </PDFContainer>
@@ -22,23 +68,28 @@ const CVGenerator = () => {
 export default CVGenerator;
 
 const Root = styled.div`
+  display: block;
   padding: 20px;
+  box-sizing: border-box;
+  transform: scale(${(props) => props.$scale});
+  transform-origin: top center;
+
+  margin-left: ${(props) => props.$margins.marginLeft}px;
+  margin-right: ${(props) => props.$margins.marginRight}px;
 `;
 
 const PDFContainer = styled.div`
   user-select: ${({ $editable }) => ($editable ? "none" : "auto")};
-  width: 21cm;
-  min-width: 21cm;
+  width: 21cm; /* A4 width */
+  min-width: 21cm; /* keep the layout consistent */
   max-width: 21cm;
-  /* min-height: 29.7cm; */
-  height: 29.7cm;
+  height: 29.7cm; /* A4 height */
   overflow: hidden;
   background-color: white;
   margin: 0 auto;
   color: black;
   box-sizing: border-box;
   font-family: ${({ $font }) => $font}, sans-serif;
-  /* box-shadow: 0 0 10px rgba(245, 245, 245, 0.1); */
 `;
 
 const Template = () => {

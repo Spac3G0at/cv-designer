@@ -52,7 +52,7 @@ const DragBlocks = ({ items, main, onReorder }) => {
           key={item.id}
           id={item.id}
           height={item.height}
-          scaleFactor={1} // ! Pass the scale factor here
+          scaleFactor={getScaleFactor()} // ! Pass the scale factor here
         >
           {item.content}
         </SortableItem>
@@ -151,3 +151,26 @@ const Content = styled.div`
   box-shadow: ${({ $shadow }) =>
     $shadow ? "0 4px 8px rgba(0,0,0,0.2)" : "none"};
 `;
+
+const getScaleFactor = () => {
+  const element = document.querySelector("#cv-ctn");
+  if (!element) return 1;
+
+  const computedStyle = window.getComputedStyle(element);
+
+  // Extract the `transform` property
+  const transform = computedStyle.transform;
+
+  let scale = 1; // Default scale value if no transform is applied
+
+  if (transform && transform !== "none") {
+    // Check if it's a scale transform (e.g., "matrix(a, b, c, d, tx, ty)")
+    const matrix = transform.match(/matrix\(([^)]+)\)/);
+    if (matrix) {
+      const values = matrix[1].split(", ");
+      scale = parseFloat(values[0]); // 'a' in matrix(a, b, c, d, tx, ty) represents uniform scaling
+    }
+  }
+
+  return scale;
+};

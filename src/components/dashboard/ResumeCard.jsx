@@ -91,6 +91,7 @@ const Infos = styled.div`
 
 const ButtonsGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
   font-size: 14px;
   margin-top: 10px;
   a {

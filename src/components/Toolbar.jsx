@@ -90,6 +90,9 @@ const Root = styled.div`
   flex-direction: column;
   width: 90px;
   z-index: 5;
+  @media (max-width: 962px) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
