@@ -3,6 +3,7 @@ import Card from "../Card";
 import { Link } from "react-router";
 import PageLoader from "../../pages/PageLoader";
 import useFetch from "../../hooks/useFetch";
+import NewResumeButton from "../NewResumeButton";
 
 const ResumeCard = () => {
   const { data, loading } = useFetch("resume");
@@ -13,9 +14,7 @@ const ResumeCard = () => {
       <Header>
         <h3>My resumes</h3>
         <div>
-          <Link to="/cv-editor">
-            <button>NEW RESUME</button>
-          </Link>
+          <NewResumeButton />
         </div>
       </Header>
 
@@ -57,10 +56,10 @@ const ResumeItem = ({ resume }) => {
     <ResumeItemRoot>
       <img src={"https://placehold.co/65x91"} alt={resume.name} />
       <Infos>
-        <Link to="/cv-editor">{resume.name}</Link>
+        <Link to={`/cv-editor/${resume._id}`}>{resume.name}</Link>
         <small>Updated 1 hour ago</small>
         <ButtonsGroup>
-          <Link to="/cv-editor">
+          <Link to={`/cv-editor/${resume._id}`}>
             <button>EDIT</button>
           </Link>
           <button>DUPLICATE</button>

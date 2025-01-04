@@ -11,8 +11,8 @@ const ResumesPage = () => {
     <div>
       {loading && <PageLoader />}
       <Content>
-        {data?.map((resume, index) => (
-          <Card key={resume.id + index}>
+        {data?.map((resume) => (
+          <Card key={resume._id}>
             <ResumeItem resume={resume} large />
           </Card>
         ))}

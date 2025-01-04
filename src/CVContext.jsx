@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useMemo, useEffect } from "react";
 
 import alignArraysById from "./utils/alignArraysById";
+import useUpdate from "./hooks/useUpdate";
 
 // Create the context
 const CVContext = createContext();
@@ -15,6 +16,8 @@ export const CVProvider = ({ children, editable, data }) => {
 
   const cv = useMemo(() => stack[stack.length - 1], [stack]);
   const settings = useMemo(() => cv.settings, [cv]);
+
+  useUpdate(cv);
 
   useEffect(() => {
     document.documentElement.style.setProperty(

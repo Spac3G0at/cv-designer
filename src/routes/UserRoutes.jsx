@@ -1,6 +1,5 @@
 import { useRoutes, Navigate } from "react-router";
 import Homepage from "../pages/Homepage";
-import CVEditor from "../pages/CVEditor";
 import NotFound from "../pages/NotFound";
 import Loader from "../pages/Loader";
 import { Suspense } from "react";
@@ -8,6 +7,7 @@ import Layout from "../pages/Layout";
 import EmptyLayout from "../pages/EmptyLayout";
 import ResumeViewPage from "../pages/ResumeViewPage";
 import ResumesPage from "../pages/ResumesPage";
+import Editor from "../pages/Editor";
 
 const UserRoutes = () => {
   const routes = [
@@ -31,10 +31,10 @@ const UserRoutes = () => {
       ],
     },
     {
-      path: "cv-editor",
+      path: "cv-editor/:id",
       element: (
         <Suspense fallback={<Loader />}>
-          <CVEditor />
+          <Editor />
         </Suspense>
       ),
     },

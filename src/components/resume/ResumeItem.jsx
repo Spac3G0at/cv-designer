@@ -11,7 +11,7 @@ const ResumeItem = ({ resume, large }) => {
         alt={resume.name}
       />
       <Infos>
-        <Link to="/cv-editor">{resume.name}</Link>
+        <Link to={`/cv-editor/${resume._id}`}>{resume.name}</Link>
         <small>Updated 1 hour ago</small>
         <ButtonsGroup>
           <Link to="/cv-editor">
