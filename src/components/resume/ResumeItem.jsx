@@ -2,6 +2,8 @@ import { Link } from "react-router";
 import styled from "styled-components";
 
 const ResumeItem = ({ resume, large }) => {
+  console.log(resume);
+
   return (
     <ResumeItemRoot>
       <img
@@ -9,14 +11,14 @@ const ResumeItem = ({ resume, large }) => {
         alt={resume.name}
       />
       <Infos>
-        <Link to="/cv-editor">Resume 1</Link>
+        <Link to="/cv-editor">{resume.name}</Link>
         <small>Updated 1 hour ago</small>
         <ButtonsGroup>
           <Link to="/cv-editor">
             <button>EDIT</button>
           </Link>
           <button>DUPLICATE</button>
-          <a href={`/cv/${resume.id}`} target="_blank">
+          <a href={`/cv/${resume._id}`} target="_blank">
             <button>VIEW</button>
           </a>
         </ButtonsGroup>

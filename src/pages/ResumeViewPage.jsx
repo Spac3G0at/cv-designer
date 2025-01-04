@@ -1,9 +1,24 @@
-import { Link } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import DownloadButton from "../components/DownloadButton";
 import CVEditor from "./CVEditor";
+import useFetch from "../hooks/useFetch";
+import { useEffect } from "react";
+import Loader from "./Loader";
 
 const ResumeViewPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { data, loading, error } = useFetch(`resume/${id}`);
+
+  useEffect(() => {
+    if (error && error?.code !== "ERR_CANCELED") {
+      navigate("/404");
+    }
+  }, [error, navigate]);
+
+  if (loading) return <Loader />;
+
   return (
     <>
       <Link to="/">
@@ -13,7 +28,7 @@ const ResumeViewPage = () => {
         <DownloadButton />
       </ButtonFloat>
       <Content style={{ marginTop: "50px" }}>
-        <CVEditor editable={false} />
+        {!loading && data && <CVEditor data={data} editable={false} />}
       </Content>
     </>
   );

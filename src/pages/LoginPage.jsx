@@ -21,7 +21,7 @@ const LoginPage = () => {
     // Mock login logic
     if (email && password) {
       setError("");
-      dispatch(login());
+      dispatch(login({ email, password }));
     } else {
       setError("Invalid email or password.");
     }

@@ -6,6 +6,9 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import { Provider } from "react-redux";
 import store from "./store.js";
+import { setAxios } from "./utils/axiosConfig.js";
+
+setAxios();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

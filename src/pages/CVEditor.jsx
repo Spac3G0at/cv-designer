@@ -5,34 +5,15 @@ import Navbar from "../components/Navbar";
 import ThemeProvider from "../css/ThemeProvider";
 import { CVProvider } from "../CVContext";
 import Modal from "../components/Modal";
-import { useEffect, useState } from "react";
 
 import mock from "../assets/mock";
-import Loader from "./Loader";
 if (localStorage.getItem("cv") === null) {
   localStorage.setItem("cv", JSON.stringify(mock));
 }
 
 const cvData = JSON.parse(localStorage.getItem("cv") ?? JSON.stringify(mock));
 
-const CVEditor = ({ editable = true }) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const init = async () => {
-    setLoading(true);
-    let res = await new Promise((res) => setTimeout(() => res(cvData), 500));
-
-    setData(res);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    init();
-  }, []);
-
-  if (loading) return <Loader />;
-
+const CVEditor = ({ editable = true, data = cvData }) => {
   return (
     <CVProvider editable={editable} data={data}>
       <ThemeProvider>
