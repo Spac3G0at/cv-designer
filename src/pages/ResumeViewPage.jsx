@@ -13,7 +13,7 @@ const ResumeViewPage = () => {
 
   useEffect(() => {
     if (error && error?.code !== "ERR_CANCELED") {
-      navigate("/404");
+      navigate("/404", { replace: true });
     }
   }, [error, navigate]);
 

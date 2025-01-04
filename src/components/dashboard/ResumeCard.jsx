@@ -1,18 +1,15 @@
 import styled from "styled-components";
 import Card from "../Card";
 import { Link } from "react-router";
+import PageLoader from "../../pages/PageLoader";
+import useFetch from "../../hooks/useFetch";
 
 const ResumeCard = () => {
-  const resumes = [
-    {
-      name: "Resume 1",
-      id: 1,
-      thumb: "https://placehold.co/65x91",
-    },
-  ];
+  const { data, loading } = useFetch("resume");
 
   return (
     <Card>
+      {loading && <PageLoader />}
       <Header>
         <h3>My resumes</h3>
         <div>
@@ -23,8 +20,8 @@ const ResumeCard = () => {
       </Header>
 
       <div>
-        {resumes.map((resume) => (
-          <ResumeItem key={resume.id} resume={resume} />
+        {data?.map((resume) => (
+          <ResumeItem key={resume._id} resume={resume} />
         ))}
       </div>
 
@@ -58,16 +55,16 @@ const Footer = styled.div`
 const ResumeItem = ({ resume }) => {
   return (
     <ResumeItemRoot>
-      <img src={resume.thumb} alt={resume.name} />
+      <img src={"https://placehold.co/65x91"} alt={resume.name} />
       <Infos>
-        <Link to="/cv-editor">Resume 1</Link>
+        <Link to="/cv-editor">{resume.name}</Link>
         <small>Updated 1 hour ago</small>
         <ButtonsGroup>
           <Link to="/cv-editor">
             <button>EDIT</button>
           </Link>
           <button>DUPLICATE</button>
-          <a href={`/cv/${resume.id}`} target="_blank">
+          <a href={`/cv/${resume._id}`} target="_blank">
             <button>VIEW</button>
           </a>
         </ButtonsGroup>
