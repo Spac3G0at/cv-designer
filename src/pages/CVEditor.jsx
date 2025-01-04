@@ -23,7 +23,6 @@ const CVEditor = ({ editable = true }) => {
     setLoading(true);
     let res = await new Promise((res) => setTimeout(() => res(cvData), 500));
 
-    console.log("res", res);
     setData(res);
     setLoading(false);
   };

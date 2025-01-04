@@ -34,8 +34,8 @@ const ResumesPage = () => {
     <div>
       {loading && <PageLoader />}
       <Content>
-        {resumes.map((resume) => (
-          <Card key={resume.id}>
+        {resumes.map((resume, index) => (
+          <Card key={resume.id + index}>
             <ResumeItem resume={resume} large />
           </Card>
         ))}

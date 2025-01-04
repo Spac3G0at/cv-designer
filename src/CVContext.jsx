@@ -7,8 +7,6 @@ const CVContext = createContext();
 
 // Create a provider component
 export const CVProvider = ({ children, editable, data }) => {
-  console.log("CONTEXT DATA", data);
-
   const [stack, setStack] = useState([data]);
   const [future, setFuture] = useState([]);
   const [modal, setModal] = useState(null);
