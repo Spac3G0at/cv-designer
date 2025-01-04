@@ -10,7 +10,7 @@ const SelectContainer = styled.div`
 `;
 
 const FontSelect = styled.select`
-  font-family: ${(props) => props.selectedFont}, sans-serif;
+  font-family: ${(props) => props.$selectedFont}, sans-serif;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -38,7 +38,7 @@ const FontSelector = () => {
   return (
     <SelectContainer>
       <FontSelect
-        selectedFont={selectedFont}
+        $selectedFont={selectedFont}
         onChange={handleFontChange}
         value={selectedFont}
       >
