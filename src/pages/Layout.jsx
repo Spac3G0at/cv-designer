@@ -60,7 +60,7 @@ const Side = () => {
         <p>Resume creator</p>
         <Nav>
           <Link to="/dashboard">Home</Link>
-          <Link to="/cv-editor">Editor</Link>
+          <Link to="/resumes">Resumes</Link>
         </Nav>
         <Footer>
           <LogoutButton onClick={logout}>Logout</LogoutButton>

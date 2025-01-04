@@ -41,11 +41,11 @@ const NewResumeButton = () => {
       <ModalPortal isOpen={open} onClose={close}>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <label>
-            Name:
+            Give your resume a name
             <input {...register("name", { required: true })} />
           </label>
           <label>
-            Title:
+            Position sought or sector of activity
             <input {...register("title", { required: true })} />
           </label>
           <div>

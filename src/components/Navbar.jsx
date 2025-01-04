@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useCV } from "../CVContext";
 import DownloadButton from "./DownloadButton";
-import mockCV from "../assets/mock";
 import { Link } from "react-router";
 
 const Navbar = () => {
@@ -19,7 +18,6 @@ const Navbar = () => {
             <i className="fa-solid fa-rotate-right"></i>
           </button>
         </RedoUndoBtnGroup>
-        <ResetButton />
         <DownloadButton />
       </nav>
     </Root>
@@ -60,17 +58,3 @@ const RedoUndoBtnGroup = styled.div`
     }
   }
 `;
-
-const ResetButton = () => {
-  const { update } = useCV();
-
-  const reset = () => {
-    update(mockCV);
-  };
-
-  return (
-    <button style={{ marginRight: "10px" }} onClick={reset}>
-      RESET
-    </button>
-  );
-};

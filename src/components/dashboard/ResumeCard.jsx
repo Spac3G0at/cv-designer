@@ -4,9 +4,10 @@ import { Link } from "react-router";
 import PageLoader from "../../pages/PageLoader";
 import useFetch from "../../hooks/useFetch";
 import NewResumeButton from "../NewResumeButton";
+import moment from "moment";
 
 const ResumeCard = () => {
-  const { data, loading } = useFetch("resume");
+  const { data, loading } = useFetch("resume/last-3");
 
   return (
     <Card>
@@ -52,12 +53,15 @@ const Footer = styled.div`
 `;
 
 const ResumeItem = ({ resume }) => {
+  const lastUpdatedDate = new Date(resume.updatedAt);
+  const relativeTime = moment(lastUpdatedDate).fromNow();
+
   return (
     <ResumeItemRoot>
       <img src={"https://placehold.co/65x91"} alt={resume.name} />
       <Infos>
         <Link to={`/cv-editor/${resume._id}`}>{resume.name}</Link>
-        <small>Updated 1 hour ago</small>
+        <small>Updated {relativeTime}</small>
         <ButtonsGroup>
           <Link to={`/cv-editor/${resume._id}`}>
             <button>EDIT</button>
@@ -77,6 +81,10 @@ const ResumeItemRoot = styled.div`
   img {
     margin-right: 12px;
     border-radius: 4px;
+  }
+  margin-bottom: 16px;
+  &:last-of-type {
+    margin-bottom: 0;
   }
 `;
 

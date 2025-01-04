@@ -1,8 +1,10 @@
 import { Link } from "react-router";
 import styled from "styled-components";
+import moment from "moment";
 
 const ResumeItem = ({ resume, large }) => {
-  console.log(resume);
+  const lastUpdatedDate = new Date(resume.updatedAt);
+  const relativeTime = moment(lastUpdatedDate).fromNow();
 
   return (
     <ResumeItemRoot>
@@ -12,9 +14,9 @@ const ResumeItem = ({ resume, large }) => {
       />
       <Infos>
         <Link to={`/cv-editor/${resume._id}`}>{resume.name}</Link>
-        <small>Updated 1 hour ago</small>
+        <small>Updated {relativeTime}</small>
         <ButtonsGroup>
-          <Link to="/cv-editor">
+          <Link to={`/cv-editor/${resume._id}`}>
             <button>EDIT</button>
           </Link>
           <button>DUPLICATE</button>
