@@ -28,13 +28,16 @@ const Root = styled.div`
 const PDFContainer = styled.div`
   user-select: ${({ $editable }) => ($editable ? "none" : "auto")};
   width: 21cm;
+  min-width: 21cm;
+  max-width: 21cm;
+  /* min-height: 29.7cm; */
   height: 29.7cm;
+  overflow: hidden;
   background-color: white;
   margin: 0 auto;
   color: black;
   box-sizing: border-box;
   font-family: ${({ $font }) => $font}, sans-serif;
-  overflow: hidden;
   /* box-shadow: 0 0 10px rgba(245, 245, 245, 0.1); */
 `;
 

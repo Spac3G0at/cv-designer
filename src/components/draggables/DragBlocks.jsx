@@ -52,6 +52,7 @@ const DragBlocks = ({ items, main, onReorder }) => {
           key={item.id}
           id={item.id}
           height={item.height}
+          scaleFactor={1} // ! Pass the scale factor here
         >
           {item.content}
         </SortableItem>
@@ -79,7 +80,7 @@ const DragBlocks = ({ items, main, onReorder }) => {
   );
 };
 
-const SortableItem = ({ id, height, children, editable }) => {
+const SortableItem = ({ id, height, children, editable, scaleFactor = 1 }) => {
   const {
     attributes,
     listeners,
@@ -89,14 +90,23 @@ const SortableItem = ({ id, height, children, editable }) => {
     isDragging,
   } = useSortable({ id });
 
+  // Adjust the transform values based on the scale factor
+  const adjustedTransform = transform
+    ? {
+        ...transform,
+        x: transform.x / scaleFactor,
+        y: transform.y / scaleFactor,
+      }
+    : null;
+
   const style = {
     transform: CSS.Transform.toString(
-      transform ? { ...transform, scaleY: 1 } : null
+      adjustedTransform ? { ...adjustedTransform, scaleY: 1 } : null
     ),
     transition,
     height: `${height}px`,
-    zIndex: isDragging ? 2 : 1, // Set zIndex for the active item
-    ...(isDragging ? { boxShadow: "0 4px 8px rgba(0,0,0,0.2)" } : {}), // Optional: Add a shadow for visual feedback
+    zIndex: isDragging ? 2 : 1,
+    ...(isDragging ? { boxShadow: "0 4px 8px rgba(0,0,0,0.2)" } : {}),
   };
 
   return (
@@ -107,7 +117,6 @@ const SortableItem = ({ id, height, children, editable }) => {
       {...attributes}
       {...listeners}
     >
-      {/* Prevent drag propagation on button clicks */}
       <div
         onPointerDown={(e) => {
           if (e.target.tagName === "BUTTON") e.stopPropagation();

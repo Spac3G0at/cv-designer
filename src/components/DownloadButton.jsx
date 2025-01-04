@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { LatoFontFaces } from "../css/Lato/LatoFontFaces";
 import { DynaPuffFaces } from "../css/DynaPuff/DynaPuffFaces";
 
+const A4_RATIO = 29.7 / 21; // A4 ratio (1.414)
+
 const DownloadButton = () => {
   const handleDownloadPdf = async () => {
     const element = document.querySelector("#cv");
@@ -24,11 +26,11 @@ const DownloadButton = () => {
 
     // A4 page dimensions in points
     const pageWidth = 595.27; // A4 width -0.01
-    const pageHeight = 841.88; // A4 height -0.01
+    const pageHeight = 841.89; // A4 height -0.01
 
     // Get element dimensions
     const elementWidth = element.offsetWidth;
-    const elementHeight = element.offsetHeight;
+    const elementHeight = elementWidth * A4_RATIO;
 
     // Calculate scaling to fit the element within A4 dimensions
     const scaleX = pageWidth / elementWidth;
