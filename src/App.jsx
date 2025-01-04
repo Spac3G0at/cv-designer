@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import GuestRoutes from "./routes/GuestRoutes";
 import UserRoutes from "./routes/UserRoutes";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsAuthenticated(true);
-    }, 1000);
-  }, []);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const Router = isAuthenticated ? UserRoutes : GuestRoutes;
 

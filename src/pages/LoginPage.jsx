@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { login } from "../features/auth/authActions";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,9 +19,9 @@ const LoginPage = () => {
     }
 
     // Mock login logic
-    if (email === "test@example.com" && password === "password123") {
+    if (email && password) {
       setError("");
-      navigate("/dashboard");
+      dispatch(login());
     } else {
       setError("Invalid email or password.");
     }

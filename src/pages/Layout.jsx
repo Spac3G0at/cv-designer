@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, Outlet, useLocation } from "react-router";
 import styled from "styled-components";
+import { logoutUser } from "../features/auth/authActions";
 
 const Layout = () => {
   return (
@@ -40,6 +42,11 @@ const Side = () => {
   const close = () => setOpen(false);
   const toggle = () => setOpen((prev) => !prev);
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(logoutUser());
+  };
 
   useEffect(() => {
     return () => {
@@ -56,7 +63,7 @@ const Side = () => {
           <Link to="/cv-editor">Editor</Link>
         </Nav>
         <Footer>
-          <LogoutButton>Logout</LogoutButton>
+          <LogoutButton onClick={logout}>Logout</LogoutButton>
         </Footer>
       </SideRoot>
       <Navbar>
