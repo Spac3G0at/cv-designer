@@ -10,6 +10,5 @@ const Root = styled.div`
   background: #333333;
   padding: 24px;
   max-width: 620px;
-  width: 100%;
   border-radius: 8px;
 `;

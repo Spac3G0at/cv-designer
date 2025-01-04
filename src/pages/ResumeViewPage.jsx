@@ -12,7 +12,9 @@ const ResumeViewPage = () => {
       <ButtonFloat>
         <DownloadButton />
       </ButtonFloat>
-      <CVEditor editable={false} />
+      <Content style={{ marginTop: "50px" }}>
+        <CVEditor editable={false} />
+      </Content>
     </>
   );
 };
@@ -23,6 +25,11 @@ const ButtonFloat = styled.div`
   position: fixed;
   right: 30px;
   top: 30px;
+  z-index: 5;
+`;
+
+const Content = styled.div`
+  margin-top: 50px;
 `;
 
 const ButtonHome = styled.button`
