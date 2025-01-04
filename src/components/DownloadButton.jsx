@@ -41,7 +41,13 @@ const DownloadButton = () => {
     // Render HTML content into the PDF
     await pdf.html(element, {
       callback: (doc) => {
-        doc.save("cv.pdf"); // Save the PDF
+        const totalPages = doc.internal.pages.length;
+
+        for (let i = 1; i < totalPages; i++) {
+          doc.deletePage(2); // Delete all pages except the first
+        }
+
+        doc.save("resume.pdf"); // Save the PDF
       },
       x: 0,
       y: 0,
