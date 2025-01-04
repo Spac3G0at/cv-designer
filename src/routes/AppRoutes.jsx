@@ -9,6 +9,7 @@ import Layout from "../pages/Layout";
 import EmptyLayout from "../pages/EmptyLayout";
 import ResumeViewPage from "../pages/ResumeViewPage";
 import ResumesPage from "../pages/ResumesPage";
+import LoginPage from "../pages/LoginPage";
 
 export function HydrateFallback() {
   return <Loader />;
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         element: <ResumeViewPage />,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <LoginPage />,
   },
   {
     path: "404",
